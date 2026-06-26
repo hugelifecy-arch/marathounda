@@ -154,5 +154,15 @@
   "threeBed": "3-bed",
   "currencyLabel": "Currency",
   "languageLabel": "Language",
-  "eurobankLink": "View Eurobank's official calculator"
+  "eurobankLink": "View Eurobank's official calculator",
+  "priceLabel": "Price",
+  "poa": "Price on application",
+  "sold": "Sold",
+  "showAll": "All",
+  "twoBed": "2-bed",
+  "availableOnly": "Available only",
+  "noMatch": "No residences match these filters.",
+  "consent": "I consent to Terra Something storing my details to respond to this enquiry.",
+  "consentRequired": "Please confirm your consent to continue.",
+  "directions": "Get directions"
 }

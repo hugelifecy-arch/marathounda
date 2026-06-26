@@ -154,5 +154,15 @@
   "threeBed": "3 卧",
   "currencyLabel": "货币",
   "languageLabel": "语言",
-  "eurobankLink": "查看 Eurobank 官方计算器"
+  "eurobankLink": "查看 Eurobank 官方计算器",
+  "priceLabel": "价格",
+  "poa": "价格面议",
+  "sold": "已售",
+  "showAll": "全部",
+  "twoBed": "2 卧",
+  "availableOnly": "仅可售",
+  "noMatch": "没有符合这些筛选条件的住宅。",
+  "consent": "我同意 Terra Something 存储我的信息以回复此询问。",
+  "consentRequired": "请确认您的同意以继续。",
+  "directions": "获取路线"
 }

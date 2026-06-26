@@ -154,5 +154,15 @@
   "threeBed": "3 Zimmer",
   "currencyLabel": "Währung",
   "languageLabel": "Sprache",
-  "eurobankLink": "Offiziellen Eurobank-Rechner ansehen"
+  "eurobankLink": "Offiziellen Eurobank-Rechner ansehen",
+  "priceLabel": "Preis",
+  "poa": "Preis auf Anfrage",
+  "sold": "Verkauft",
+  "showAll": "Alle",
+  "twoBed": "2 Zimmer",
+  "availableOnly": "Nur verfügbare",
+  "noMatch": "Keine Residenzen entsprechen diesen Filtern.",
+  "consent": "Ich willige ein, dass Terra Something meine Daten zur Beantwortung dieser Anfrage speichert.",
+  "consentRequired": "Bitte bestätigen Sie Ihre Einwilligung, um fortzufahren.",
+  "directions": "Route planen"
 }

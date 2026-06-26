@@ -154,5 +154,15 @@
   "threeBed": "3 חדרים",
   "currencyLabel": "מטבע",
   "languageLabel": "שפה",
-  "eurobankLink": "למחשבון הרשמי של Eurobank"
+  "eurobankLink": "למחשבון הרשמי של Eurobank",
+  "priceLabel": "מחיר",
+  "poa": "מחיר לפי פנייה",
+  "sold": "נמכר",
+  "showAll": "הכול",
+  "twoBed": "2 חדרים",
+  "availableOnly": "זמינות בלבד",
+  "noMatch": "אין דירות התואמות למסננים אלה.",
+  "consent": "אני מסכים שטרה סאמתינג תשמור את פרטיי כדי להשיב לפנייה זו.",
+  "consentRequired": "אנא אשרו את הסכמתכם כדי להמשיך.",
+  "directions": "הוראות הגעה"
 }

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { UNITS } from '@/data/units';
 
@@ -7,15 +7,27 @@ export default function EnquiryForm() {
   const t = useTranslations();
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [hp, setHp] = useState('');
+  const [interest, setInterest] = useState('');
+  const [consent, setConsent] = useState(false);
+  const [consentError, setConsentError] = useState(false);
+
+  // Pre-select a residence when the visitor clicked "Enquire" on a unit.
+  useEffect(() => {
+    const onPrefill = (e: Event) => setInterest(String((e as CustomEvent<number>).detail));
+    window.addEventListener('enquiry:prefill', onPrefill);
+    return () => window.removeEventListener('enquiry:prefill', onPrefill);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (hp) return;
+    if (!consent) { setConsentError(true); return; }
+    setConsentError(false);
     setStatus('sending');
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form));
     try {
-      const res = await fetch('/api/enquire', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      const res = await fetch('/api/enquire', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...data, consent: true }) });
       setStatus(res.ok ? 'sent' : 'error');
     } catch {
       setStatus('error');
@@ -52,7 +64,7 @@ export default function EnquiryForm() {
 
             <div>
               <label htmlFor="enq-interest" className="block text-sm font-outfit text-olive mb-1">{t('interest')}</label>
-              <select id="enq-interest" name="interest" className="w-full border border-line rounded px-3 py-2 font-outfit text-ink bg-limestone focus:outline-none focus:border-clay">
+              <select id="enq-interest" name="interest" value={interest} onChange={(e) => setInterest(e.target.value)} className="w-full border border-line rounded px-3 py-2 font-outfit text-ink bg-limestone focus:outline-none focus:border-clay">
                 <option value="">{t('anyUnit')}</option>
                 {UNITS.map((u) => (
                   <option key={u.id} value={u.id}>{t('unit')} {u.id} — {u.type} ({u.total} m²)</option>
@@ -63,6 +75,22 @@ export default function EnquiryForm() {
             <div>
               <label htmlFor="enq-message" className="block text-sm font-outfit text-olive mb-1">{t('message')}</label>
               <textarea id="enq-message" name="message" rows={4} className="w-full border border-line rounded px-3 py-2 font-outfit text-ink bg-limestone focus:outline-none focus:border-clay transition-colors resize-none" />
+            </div>
+
+            <div>
+              <label htmlFor="enq-consent" className="flex items-start gap-2 text-sm font-outfit text-olive">
+                <input
+                  id="enq-consent"
+                  name="consent"
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => { setConsent(e.target.checked); if (e.target.checked) setConsentError(false); }}
+                  aria-invalid={consentError}
+                  className="mt-1 accent-clay"
+                />
+                <span>{t('consent')}</span>
+              </label>
+              {consentError && <p role="alert" className="text-red-600 text-sm mt-1 font-outfit">{t('consentRequired')}</p>}
             </div>
 
             <button type="submit" disabled={status === 'sending'} className="w-full bg-clay hover:bg-clayDark text-paper py-3 rounded font-outfit font-medium transition-colors disabled:opacity-60">
