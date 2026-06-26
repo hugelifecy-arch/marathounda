@@ -2,11 +2,13 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { UNITS } from '@/data/units';
+import { UNITS, PLANS } from '@/data/units';
 
 export default function Residences() {
   const t = useTranslations();
   const [selected, setSelected] = useState<number | null>(null);
+  const [floor, setFloor] = useState<'ground' | 'first'>('ground');
+  const [lightbox, setLightbox] = useState<string | null>(null);
   const unit = selected !== null ? UNITS.find((u) => u.id === selected) : null;
 
   return (
@@ -22,7 +24,7 @@ export default function Residences() {
           {UNITS.map((u) => (
             <button
               key={u.id}
-              onClick={() => setSelected(selected === u.id ? null : u.id)}
+              onClick={() => { setSelected(selected === u.id ? null : u.id); setFloor('ground'); }}
               className={`aspect-square rounded-lg border-2 flex flex-col items-center justify-center text-sm font-outfit font-semibold transition-all ${
                 u.status === 'available'
                   ? selected === u.id ? 'bg-sage text-paper border-sage' : 'bg-sage/20 text-sage border-sage hover:bg-sage/40'
@@ -62,17 +64,56 @@ export default function Residences() {
                   {unit.storage > 0 && <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('storage')}</span><span className="font-medium">{unit.storage} m²</span></div>}
                   <div className="flex justify-between py-1 font-semibold"><span>{t('totalArea')}</span><span>{unit.total} m²</span></div>
                 </div>
-                <div className={`inline-block px-3 py-1 rounded-full text-xs font-outfit font-semibold mb-4 ${unit.status === 'available' ? 'bg-sage/20 text-sage' : 'bg-clay/20 text-clay'}`}>
+                <div className={`inline-block px-3 py-1 rounded-full text-xs font-outfit font-semibold ${unit.status === 'available' ? 'bg-sage/20 text-sage' : 'bg-clay/20 text-clay'}`}>
                   {unit.status === 'available' ? t('available') : t('reserved')}
                 </div>
-                <div className="mt-2">
-                  <p className="text-xs text-olive italic mb-3">Floor plan available on request.</p>
-                </div>
-                <a href="#enquire" className="block text-center bg-clay hover:bg-clayDark text-paper py-3 px-6 rounded font-outfit font-medium transition-colors">
-                  {t('enquireUnit')}
-                </a>
               </div>
             </div>
+
+            <div className="p-6 border-t border-line">
+              <h4 className="font-fraunces text-xl text-ink mb-3">{t('floorPlans')}</h4>
+              <div className="flex gap-2 mb-4 font-outfit text-sm">
+                {(['ground', 'first'] as const).map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setFloor(f)}
+                    className={`px-4 py-2 rounded font-medium transition-colors ${
+                      floor === f ? 'bg-clay text-paper' : 'bg-paper text-olive border border-line hover:bg-line/40'
+                    }`}
+                  >
+                    {f === 'ground' ? t('groundFloor') : t('firstFloor')}
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() => setLightbox(PLANS[unit.planType][floor])}
+                className="block w-full cursor-zoom-in overflow-hidden rounded-lg border border-line bg-paper"
+              >
+                <Image
+                  src={PLANS[unit.planType][floor]}
+                  alt={`${unit.type} — ${floor === 'ground' ? t('groundFloor') : t('firstFloor')}`}
+                  width={1200}
+                  height={800}
+                  className="w-full h-auto object-contain"
+                />
+              </button>
+              <p className="text-xs text-olive italic mt-3">{t('planCaption')}</p>
+            </div>
+
+            <div className="px-6 pb-6">
+              <a href="#enquire" className="block text-center bg-clay hover:bg-clayDark text-paper py-3 px-6 rounded font-outfit font-medium transition-colors">
+                {t('enquireUnit')}
+              </a>
+            </div>
+          </div>
+        )}
+
+        {lightbox && (
+          <div className="fixed inset-0 bg-ink/95 z-50 flex items-center justify-center p-4" onClick={() => setLightbox(null)}>
+            <div className="relative w-full max-w-5xl max-h-full" onClick={(e) => e.stopPropagation()}>
+              <Image src={lightbox} alt="Floor plan" width={1600} height={1100} className="w-full h-auto object-contain max-h-[85vh]" />
+            </div>
+            <button onClick={() => setLightbox(null)} className="absolute top-4 right-4 text-paper text-3xl hover:text-gold transition-colors">&#x2715;</button>
           </div>
         )}
       </div>
