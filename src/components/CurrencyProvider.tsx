@@ -1,5 +1,6 @@
 'use client';
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { useLocale } from 'next-intl';
 
 // Static fallback FX table (1 EUR = X). Update or wire to a live FX API if needed.
 export const FX = { EUR: 1, USD: 1.08, GBP: 0.86, RUB: 98, CNY: 7.8, ILS: 3.9 } as const;
@@ -16,6 +17,10 @@ interface CurrencyCtx {
 const Context = createContext<CurrencyCtx | null>(null);
 
 export function CurrencyProvider({ children }: { children: ReactNode }) {
+  // Format numbers for the active site locale so grouping/symbol placement is
+  // correct and deterministic across SSR and client (avoids a hydration
+  // mismatch from Intl falling back to the runtime default locale).
+  const locale = useLocale();
   const [currency, setCurrencyState] = useState<Currency>('EUR');
 
   useEffect(() => {
@@ -29,7 +34,7 @@ export function CurrencyProvider({ children }: { children: ReactNode }) {
   };
 
   const format = (eur: number) =>
-    new Intl.NumberFormat(undefined, { style: 'currency', currency, maximumFractionDigits: 0 }).format(eur * FX[currency]);
+    new Intl.NumberFormat(locale, { style: 'currency', currency, maximumFractionDigits: 0 }).format(eur * FX[currency]);
 
   return <Context.Provider value={{ currency, setCurrency, format }}>{children}</Context.Provider>;
 }

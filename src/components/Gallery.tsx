@@ -1,13 +1,16 @@
 'use client';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { useFocusTrap } from '@/components/useFocusTrap';
 
 const GALLERY_KEYS = ['01','02','03','04','05','06','07','08','09','10','11','12'];
 
 export default function Gallery() {
   const t = useTranslations();
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(dialogRef, lightbox !== null);
 
   const prev = useCallback(() => setLightbox((i) => i !== null ? (i - 1 + GALLERY_KEYS.length) % GALLERY_KEYS.length : null), []);
   const next = useCallback(() => setLightbox((i) => i !== null ? (i + 1) % GALLERY_KEYS.length : null), []);
@@ -58,7 +61,7 @@ export default function Gallery() {
       </div>
 
       {lightbox !== null && (
-        <div role="dialog" aria-modal="true" className="fixed inset-0 bg-ink/95 z-50 flex items-center justify-center" onClick={close}>
+        <div ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('galleryTitle')} className="fixed inset-0 bg-ink/95 z-50 flex items-center justify-center outline-none" onClick={close}>
           <div className="relative w-full max-w-5xl max-h-full p-4" onClick={(e) => e.stopPropagation()}>
             <div className="relative aspect-video">
               <Image src={`/renders/render-${GALLERY_KEYS[lightbox]}.jpg`} alt={`Terra Something — Marathounda residence exterior render ${lightbox + 1}`} fill className="object-contain" />

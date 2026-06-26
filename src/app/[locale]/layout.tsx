@@ -4,8 +4,12 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales, rtlLocales, defaultLocale, siteUrl, type Locale } from '@/i18n';
 import { CurrencyProvider } from '@/components/CurrencyProvider';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import '../globals.css';
+
+export const viewport: Viewport = {
+  themeColor: '#F4F1EA',
+};
 
 const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces', display: 'swap' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit', display: 'swap' });
@@ -34,7 +38,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   const locale = params.locale;
   const title = titles[locale] ?? titles.en;
   const description = descriptions[locale] ?? descriptions.en;
-  const ogImage = { url: '/renders/render-01.jpg', width: 1920, height: 1080, alt: 'Terra Something — Marathounda, Paphos' };
+  const ogImage = { url: '/renders/render-01.jpg', width: 1672, height: 941, alt: 'Terra Something — Marathounda, Paphos' };
   return {
     metadataBase: new URL(siteUrl),
     title,
