@@ -106,9 +106,24 @@
   "timelineTitle": "Bauzeitplan",
   "timeline": [
     {
-      "phase": "Vorverkauf",
-      "desc": "Jetzt offen — September 2026",
+      "phase": "Planung abgeschlossen",
+      "desc": "Juni 2026",
       "done": true
+    },
+    {
+      "phase": "Planungsgenehmigung",
+      "desc": "Juli 2026",
+      "done": false
+    },
+    {
+      "phase": "Baugenehmigung",
+      "desc": "September 2026",
+      "done": false
+    },
+    {
+      "phase": "Vorverkauf",
+      "desc": "Start September 2026",
+      "done": false
     },
     {
       "phase": "Fundament",

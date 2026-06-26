@@ -106,9 +106,24 @@
   "timelineTitle": "Construction Timeline",
   "timeline": [
     {
-      "phase": "Pre-Sale",
-      "desc": "Open now — September 2026",
+      "phase": "Design Completed",
+      "desc": "June 2026",
       "done": true
+    },
+    {
+      "phase": "Planning Permit",
+      "desc": "July 2026",
+      "done": false
+    },
+    {
+      "phase": "Building Permit",
+      "desc": "September 2026",
+      "done": false
+    },
+    {
+      "phase": "Pre-Sale",
+      "desc": "Opens September 2026",
+      "done": false
     },
     {
       "phase": "Foundations",

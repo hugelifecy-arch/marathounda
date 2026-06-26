@@ -106,9 +106,24 @@
   "timelineTitle": "施工时间表",
   "timeline": [
     {
-      "phase": "预售",
-      "desc": "现已开放 — 2026年9月",
+      "phase": "设计完成",
+      "desc": "2026年6月",
       "done": true
+    },
+    {
+      "phase": "规划许可",
+      "desc": "2026年7月",
+      "done": false
+    },
+    {
+      "phase": "建筑许可",
+      "desc": "2026年9月",
+      "done": false
+    },
+    {
+      "phase": "预售",
+      "desc": "2026年9月开放",
+      "done": false
     },
     {
       "phase": "地基",

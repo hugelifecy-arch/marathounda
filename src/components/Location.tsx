@@ -49,9 +49,9 @@ export default function Location() {
 
         <div>
           <h3 className="font-fraunces text-2xl text-ink text-center mb-8">{t('timelineTitle')}</h3>
-          <div className="flex flex-col md:flex-row gap-0 max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row gap-0 max-w-6xl mx-auto">
             {timeline.map((step, i) => (
-              <div key={i} className="flex-1 relative flex flex-col items-center text-center px-4">
+              <div key={i} className="flex-1 relative flex flex-col items-center text-center px-2">
                 <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center mb-3 z-10 ${step.done ? 'bg-sage border-sage text-paper' : 'bg-paper border-line text-olive'}`}>
                   {step.done ? '✓' : <span className="text-xs">{i + 1}</span>}
                 </div>
