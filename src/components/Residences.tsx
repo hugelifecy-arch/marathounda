@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { UNITS, PLANS } from '@/data/units';
@@ -10,6 +10,17 @@ export default function Residences() {
   const [floor, setFloor] = useState<'ground' | 'first'>('ground');
   const [lightbox, setLightbox] = useState<string | null>(null);
   const unit = selected !== null ? UNITS.find((u) => u.id === selected) : null;
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setLightbox(null); };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [lightbox]);
 
   return (
     <div className="bg-paper py-24 px-4">
@@ -40,7 +51,7 @@ export default function Residences() {
         <div className="flex gap-4 justify-center mb-12 text-sm font-outfit">
           <span className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-sage inline-block" />{t('available')}</span>
           <span className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-clay inline-block" />{t('reserved')}</span>
-          <span className="flex items-center gap-2"><span className="w-3 h-3 rounded border-2 border-ink/30 inline-block" />3-bed</span>
+          <span className="flex items-center gap-2"><span className="w-3 h-3 rounded border-2 border-ink/30 inline-block" />{t('threeBed')}</span>
         </div>
 
         {unit && (
@@ -49,7 +60,7 @@ export default function Residences() {
               <div className="relative aspect-video md:aspect-auto min-h-64">
                 <Image
                   src={`/renders/render-${unit.renderKey}.jpg`}
-                  alt={`${t('unit')} ${unit.id}`}
+                  alt={`${t('unit')} ${unit.id} — ${unit.type}`}
                   fill
                   className="object-cover"
                 />
@@ -109,11 +120,11 @@ export default function Residences() {
         )}
 
         {lightbox && (
-          <div className="fixed inset-0 bg-ink/95 z-50 flex items-center justify-center p-4" onClick={() => setLightbox(null)}>
+          <div role="dialog" aria-modal="true" className="fixed inset-0 bg-ink/95 z-50 flex items-center justify-center p-4" onClick={() => setLightbox(null)}>
             <div className="relative w-full max-w-5xl max-h-full" onClick={(e) => e.stopPropagation()}>
-              <Image src={lightbox} alt="Floor plan" width={1600} height={1100} className="w-full h-auto object-contain max-h-[85vh]" />
+              <Image src={lightbox} alt={t('floorPlans')} width={1600} height={1100} className="w-full h-auto object-contain max-h-[85vh]" />
             </div>
-            <button onClick={() => setLightbox(null)} className="absolute top-4 right-4 text-paper text-3xl hover:text-gold transition-colors">&#x2715;</button>
+            <button onClick={() => setLightbox(null)} aria-label="Close" className="absolute top-4 end-4 text-paper text-3xl hover:text-gold transition-colors">&#x2715;</button>
           </div>
         )}
       </div>

@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { UNITS } from '@/data/units';
 
 const HERO_RENDERS = ['01', '12', '04', '09'];
 
@@ -14,13 +15,13 @@ export default function Hero() {
     return () => clearInterval(id);
   }, []);
 
-  const availableCount = 10;
+  const availableCount = UNITS.filter((u) => u.status === 'available').length;
 
   return (
     <div className="relative h-screen min-h-[600px] overflow-hidden">
       {HERO_RENDERS.map((key, i) => (
         <div key={key} className={`absolute inset-0 transition-opacity duration-1000 ${i === slide ? 'opacity-100' : 'opacity-0'}`}>
-          <Image src={`/renders/render-${key}.jpg`} alt={`Terra Something render ${key}`} fill className="object-cover" priority={i === 0} />
+          <Image src={`/renders/render-${key}.jpg`} alt={`Terra Something maisonettes in Marathounda, Paphos — exterior view ${i + 1}`} fill className="object-cover" priority={i === 0} />
         </div>
       ))}
       <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/30 to-ink/70" />
@@ -37,7 +38,7 @@ export default function Hero() {
 
       <div className="absolute bottom-20 left-0 right-0 flex justify-center gap-2 z-10">
         {HERO_RENDERS.map((_, i) => (
-          <button key={i} onClick={() => setSlide(i)} className={`h-2 rounded-full transition-all ${i === slide ? 'bg-gold w-6' : 'bg-paper/50 w-2'}`} />
+          <button key={i} onClick={() => setSlide(i)} aria-label={`Go to slide ${i + 1}`} aria-current={i === slide} className={`h-2 rounded-full transition-all ${i === slide ? 'bg-gold w-6' : 'bg-paper/50 w-2'}`} />
         ))}
       </div>
 

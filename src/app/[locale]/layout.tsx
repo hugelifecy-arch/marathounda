@@ -2,7 +2,7 @@ import { Fraunces, Outfit } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { locales, rtlLocales, type Locale } from '@/i18n';
+import { locales, rtlLocales, defaultLocale, siteUrl, type Locale } from '@/i18n';
 import type { Metadata } from 'next';
 import '../globals.css';
 
@@ -31,14 +31,34 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     de: '12 moderne Maisonettes im Dorf Marathounda, Paphos, Zypern. 5% MwSt.',
   };
   const locale = params.locale;
+  const title = titles[locale] ?? titles.en;
+  const description = descriptions[locale] ?? descriptions.en;
+  const ogImage = { url: '/renders/render-01.jpg', width: 1920, height: 1080, alt: 'Terra Something — Marathounda, Paphos' };
   return {
-    title: titles[locale] ?? titles.en,
-    description: descriptions[locale] ?? descriptions.en,
+    metadataBase: new URL(siteUrl),
+    title,
+    description,
     openGraph: {
-      images: [{ url: '/renders/render-01.jpg', width: 1920, height: 1080 }],
+      type: 'website',
+      url: `/${locale}`,
+      siteName: 'Terra Something',
+      title,
+      description,
+      locale,
+      images: [ogImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImage.url],
     },
     alternates: {
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+      canonical: `/${locale}`,
+      languages: {
+        ...Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+        'x-default': `/${defaultLocale}`,
+      },
     },
   };
 }

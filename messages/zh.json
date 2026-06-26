@@ -72,5 +72,14 @@
   "send": "发送询盘",
   "anyUnit": "任意 / 尚未决定",
   "footerNote": "预订需支付30%定金并签署合同。适用公共费用。图片为艺术效果图。",
-  "poweredBy": "技术支持"
+  "poweredBy": "技术支持",
+  "thankYou": "谢谢！我们将尽快与您联系。",
+  "formError": "出现错误，请重试。",
+  "contactPhone": "电话",
+  "contactWhatsApp": "WhatsApp",
+  "contactEmail": "电子邮件",
+  "address": "马拉松达村，帕福斯，塞浦路斯",
+  "developer": "开发商",
+  "architect": "建筑师",
+  "threeBed": "3 卧"
 }

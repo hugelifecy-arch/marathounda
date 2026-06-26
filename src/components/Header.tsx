@@ -48,13 +48,13 @@ export default function Header() {
               {LOCALE_LABELS[locale]}
             </button>
             {langOpen && (
-              <div className="absolute right-0 top-full mt-1 bg-paper border border-line rounded shadow-lg z-50">
+              <div className="absolute end-0 top-full mt-1 bg-paper border border-line rounded shadow-lg z-50">
                 {locales.map((l) => (
                   <Link
                     key={l}
                     href={`/${l}${pathWithoutLocale}`}
                     onClick={() => setLangOpen(false)}
-                    className={`block w-full text-left px-4 py-2 text-sm hover:bg-limestone transition-colors ${l === locale ? 'text-clay font-semibold' : 'text-ink'}`}
+                    className={`block w-full text-start px-4 py-2 text-sm hover:bg-limestone transition-colors ${l === locale ? 'text-clay font-semibold' : 'text-ink'}`}
                   >
                     {LOCALE_LABELS[l]}
                   </Link>

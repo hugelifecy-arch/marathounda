@@ -72,5 +72,14 @@
   "send": "Send Enquiry",
   "anyUnit": "Any / Not sure yet",
   "footerNote": "Reservations require a 30% deposit and signed contract. Communal fees apply. Images are artist's impressions. Specifications available on request.",
-  "poweredBy": "Powered by"
+  "poweredBy": "Powered by",
+  "thankYou": "Thank you! We'll be in touch shortly.",
+  "formError": "Something went wrong. Please try again.",
+  "contactPhone": "Phone",
+  "contactWhatsApp": "WhatsApp",
+  "contactEmail": "Email",
+  "address": "Marathounda Village, Paphos, Cyprus",
+  "developer": "Developer",
+  "architect": "Architect",
+  "threeBed": "3-bed"
 }

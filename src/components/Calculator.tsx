@@ -21,7 +21,7 @@ export default function Calculator() {
     return { monthly, loan };
   }, [price, deposit, term, rate]);
 
-  const fmt = (v: number) => new Intl.NumberFormat('en-EU', { style: 'currency', currency, maximumFractionDigits: 0 }).format(v * FX[currency]);
+  const fmt = (v: number) => new Intl.NumberFormat(undefined, { style: 'currency', currency, maximumFractionDigits: 0 }).format(v * FX[currency]);
 
   return (
     <div className="bg-dark py-24 px-4">
