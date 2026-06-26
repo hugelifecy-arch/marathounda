@@ -33,7 +33,7 @@ export default function EnquiryForm() {
 
         {status === 'sent' ? (
           <div className="bg-sage/20 border border-sage text-sage p-6 rounded-lg text-center font-outfit">
-            Thank you! We&apos;ll be in touch shortly.
+            {t('thankYou')}
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 bg-paper border border-line p-8 rounded-xl">
@@ -68,15 +68,15 @@ export default function EnquiryForm() {
             <button type="submit" disabled={status === 'sending'} className="w-full bg-clay hover:bg-clayDark text-paper py-3 rounded font-outfit font-medium transition-colors disabled:opacity-60">
               {status === 'sending' ? '...' : t('send')}
             </button>
-            {status === 'error' && <p className="text-red-600 text-sm text-center font-outfit">Something went wrong. Please try again.</p>}
+            {status === 'error' && <p className="text-red-600 text-sm text-center font-outfit">{t('formError')}</p>}
           </form>
         )}
 
         <div className="mt-12 grid sm:grid-cols-3 gap-6 text-center">
           {[
-            { label: 'Phone', value: '+357 94 000015' },
-            { label: 'WhatsApp', value: '+357 99 854773' },
-            { label: 'Email', value: 'info@kalaitsidis.com' },
+            { label: t('contactPhone'), value: '+357 94 000015' },
+            { label: t('contactWhatsApp'), value: '+357 99 854773' },
+            { label: t('contactEmail'), value: 'info@kalaitsidis.com' },
           ].map(({ label, value }) => (
             <div key={label}>
               <p className="text-olive text-xs font-outfit mb-1">{label}</p>

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
@@ -9,8 +9,24 @@ export default function Gallery() {
   const t = useTranslations();
   const [lightbox, setLightbox] = useState<number | null>(null);
 
-  const prev = () => setLightbox((i) => i !== null ? (i - 1 + GALLERY_KEYS.length) % GALLERY_KEYS.length : null);
-  const next = () => setLightbox((i) => i !== null ? (i + 1) % GALLERY_KEYS.length : null);
+  const prev = useCallback(() => setLightbox((i) => i !== null ? (i - 1 + GALLERY_KEYS.length) % GALLERY_KEYS.length : null), []);
+  const next = useCallback(() => setLightbox((i) => i !== null ? (i + 1) % GALLERY_KEYS.length : null), []);
+  const close = useCallback(() => setLightbox(null), []);
+
+  useEffect(() => {
+    if (lightbox === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') prev();
+      else if (e.key === 'ArrowRight') next();
+    };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [lightbox, close, prev, next]);
 
   return (
     <div className="bg-limestone py-24 px-4">
@@ -21,28 +37,39 @@ export default function Gallery() {
         <h2 className="font-fraunces text-4xl md:text-5xl text-ink text-center mb-4">{t('galleryTitle')}</h2>
         <p className="text-olive text-center mb-12">{t('gallerySub')}</p>
 
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3">
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-3 [&>button]:mb-3">
           {GALLERY_KEYS.map((key, i) => (
-            <div key={key} onClick={() => setLightbox(i)} className="relative aspect-video cursor-pointer overflow-hidden rounded-lg group break-inside-avoid">
-              <Image src={`/renders/render-${key}.jpg`} alt={`Terra Something render ${key}`} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-            </div>
+            <button
+              key={key}
+              onClick={() => setLightbox(i)}
+              aria-label={`${t('galleryTitle')} — ${i + 1} / ${GALLERY_KEYS.length}`}
+              className="relative block w-full cursor-pointer overflow-hidden rounded-lg group break-inside-avoid focus:outline-none focus:ring-2 focus:ring-clay"
+            >
+              <Image
+                src={`/renders/render-${key}.jpg`}
+                alt={`Terra Something — Marathounda residence exterior render ${i + 1}`}
+                width={1920}
+                height={1080}
+                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </button>
           ))}
         </div>
       </div>
 
       {lightbox !== null && (
-        <div className="fixed inset-0 bg-ink/95 z-50 flex items-center justify-center" onClick={() => setLightbox(null)}>
+        <div role="dialog" aria-modal="true" className="fixed inset-0 bg-ink/95 z-50 flex items-center justify-center" onClick={close}>
           <div className="relative w-full max-w-5xl max-h-full p-4" onClick={(e) => e.stopPropagation()}>
             <div className="relative aspect-video">
-              <Image src={`/renders/render-${GALLERY_KEYS[lightbox]}.jpg`} alt={`Render ${lightbox + 1}`} fill className="object-contain" />
+              <Image src={`/renders/render-${GALLERY_KEYS[lightbox]}.jpg`} alt={`Terra Something — Marathounda residence exterior render ${lightbox + 1}`} fill className="object-contain" />
             </div>
             <div className="flex items-center justify-between mt-4">
-              <button onClick={prev} className="text-paper text-2xl px-4 py-2 hover:text-gold transition-colors">&#8249;</button>
+              <button onClick={prev} aria-label="Previous image" className="text-paper text-2xl px-4 py-2 hover:text-gold transition-colors">&#8249;</button>
               <span className="text-paper/60 text-sm font-outfit">{lightbox + 1} / {GALLERY_KEYS.length}</span>
-              <button onClick={next} className="text-paper text-2xl px-4 py-2 hover:text-gold transition-colors">&#8250;</button>
+              <button onClick={next} aria-label="Next image" className="text-paper text-2xl px-4 py-2 hover:text-gold transition-colors">&#8250;</button>
             </div>
           </div>
-          <button onClick={() => setLightbox(null)} className="absolute top-4 right-4 text-paper text-3xl hover:text-gold transition-colors">&#x2715;</button>
+          <button onClick={close} aria-label="Close" className="absolute top-4 end-4 text-paper text-3xl hover:text-gold transition-colors">&#x2715;</button>
         </div>
       )}
     </div>

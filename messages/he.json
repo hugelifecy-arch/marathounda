@@ -72,5 +72,14 @@
   "send": "שליחת פנייה",
   "anyUnit": "כל אחת / עדיין לא בטוח",
   "footerNote": "הזמנות דורשות מקדמה של 30% וחוזה חתום. חלים דמי ועד. התמונות הן הדמיות.",
-  "poweredBy": "מופעל על ידי"
+  "poweredBy": "מופעל על ידי",
+  "thankYou": "תודה! ניצור איתך קשר בקרוב.",
+  "formError": "משהו השתבש. נסו שוב.",
+  "contactPhone": "טלפון",
+  "contactWhatsApp": "WhatsApp",
+  "contactEmail": "אימייל",
+  "address": "כפר מאראתונדה, פאפוס, קפריסין",
+  "developer": "יזם",
+  "architect": "אדריכל",
+  "threeBed": "3 חדרים"
 }

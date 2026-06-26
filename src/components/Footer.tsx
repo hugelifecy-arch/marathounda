@@ -19,7 +19,7 @@ export default function Footer() {
                 <div className="text-clay font-medium" style={{ fontSize: 9, letterSpacing: 4, marginTop: 1 }}>SOMETHING</div>
               </div>
             </div>
-            <p className="text-sm font-outfit leading-relaxed">Marathounda Village, Paphos, Cyprus</p>
+            <p className="text-sm font-outfit leading-relaxed">{t('address')}</p>
           </div>
           <div>
             <p className="text-sm font-outfit space-y-1">
@@ -30,9 +30,9 @@ export default function Footer() {
             </p>
           </div>
           <div className="text-sm font-outfit">
-            <p>Developer: Rigilia Enterprises Ltd</p>
+            <p>{t('developer')}: Rigilia Enterprises Ltd</p>
             <p className="mt-1">{t('poweredBy')}: GN Kalaitsidis Capital Ltd</p>
-            <p className="mt-1">Architect: Demis Demetriades Architects LLC</p>
+            <p className="mt-1">{t('architect')}: Demis Demetriades Architects LLC</p>
           </div>
         </div>
         <div className="border-t border-paper/10 pt-6">

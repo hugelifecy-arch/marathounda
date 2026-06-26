@@ -9,11 +9,13 @@ import Calculator from '@/components/Calculator';
 import EnquiryForm from '@/components/EnquiryForm';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import JsonLd from '@/components/JsonLd';
 
 export default function HomePage({ params }: { params: { locale: string } }) {
   setRequestLocale(params.locale);
   return (
     <>
+      <JsonLd locale={params.locale} />
       <Header />
       <main>
         <Hero />

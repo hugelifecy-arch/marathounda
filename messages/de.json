@@ -72,5 +72,14 @@
   "send": "Anfrage senden",
   "anyUnit": "Beliebig / Noch nicht sicher",
   "footerNote": "Reservierungen erfordern 30% Anzahlung und unterzeichneten Vertrag. Gemeinschaftsgebühren anfallend. Bilder sind Künstlerimpressionen.",
-  "poweredBy": "Unterstützt von"
+  "poweredBy": "Unterstützt von",
+  "thankYou": "Vielen Dank! Wir melden uns in Kürze bei Ihnen.",
+  "formError": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+  "contactPhone": "Telefon",
+  "contactWhatsApp": "WhatsApp",
+  "contactEmail": "E-Mail",
+  "address": "Dorf Marathounda, Paphos, Zypern",
+  "developer": "Bauträger",
+  "architect": "Architekt",
+  "threeBed": "3 Zimmer"
 }
