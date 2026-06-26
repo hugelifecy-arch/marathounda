@@ -3,7 +3,42 @@
 @tailwind utilities;
 
 @layer base {
-  html { scroll-behavior: smooth; }
+  /* Offset in-page anchor jumps so section tops are not hidden under the
+     sticky 4rem header. */
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
   body { @apply font-outfit text-ink bg-limestone; }
   h1, h2, h3 { @apply font-fraunces; }
+
+  /* Visible keyboard focus across all interactive elements. */
+  :focus-visible {
+    outline: 2px solid #B5764D;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Respect users who prefer reduced motion. */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Skip-to-content link: visually hidden until focused. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  background: #B5764D;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 1rem;
 }

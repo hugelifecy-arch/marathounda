@@ -1,5 +1,12 @@
 {
-  "nav": ["Project", "Residences", "Gallery", "Location", "Calculator", "Enquire"],
+  "nav": [
+    "Project",
+    "Residences",
+    "Gallery",
+    "Location",
+    "Calculator",
+    "Enquire"
+  ],
   "heroTag": "Marathounda · Paphos · Cyprus",
   "heroTitle": "Terra Something",
   "heroSub": "Twelve contemporary hillside residences where Mediterranean light meets attainable living.",
@@ -10,12 +17,36 @@
   "introText": "Set high above Paphos in the tranquil village of Marathounda, Terra Something is a collection of twelve architect-designed maisonettes. Natural stone, crisp white render and generous glazing frame uninterrupted sunset views across the Mediterranean — all within ten minutes of the city.",
   "sellingTitle": "Why Terra Something",
   "selling": [
-    { "icon": "🏛️", "t": "5% VAT Eligible", "d": "Qualifies for the reduced 5% VAT rate on primary residences under Law 42(I)/2023." },
-    { "icon": "🌾", "t": "Rural Grant", "d": "Buyers may be eligible for government housing grants available in rural areas." },
-    { "icon": "📜", "t": "Separate Title Deeds", "d": "Each residence is delivered with its own independent title deed." },
-    { "icon": "🌅", "t": "Sunset Sea Views", "d": "Elevated 300m+ position with panoramic western views over the coast." },
-    { "icon": "🏗️", "t": "Stone & Light", "d": "Natural stone cladding, white render, timber accents — built to last." },
-    { "icon": "🚗", "t": "Private Parking", "d": "Dedicated parking for every residence plus visitor spaces." }
+    {
+      "icon": "🏛️",
+      "t": "5% VAT Eligible",
+      "d": "Qualifies for the reduced 5% VAT rate on primary residences under Law 42(I)/2023."
+    },
+    {
+      "icon": "🌾",
+      "t": "Rural Grant",
+      "d": "Buyers may be eligible for government housing grants available in rural areas."
+    },
+    {
+      "icon": "📜",
+      "t": "Separate Title Deeds",
+      "d": "Each residence is delivered with its own independent title deed."
+    },
+    {
+      "icon": "🌅",
+      "t": "Sunset Sea Views",
+      "d": "Elevated 300m+ position with panoramic western views over the coast."
+    },
+    {
+      "icon": "🏗️",
+      "t": "Stone & Light",
+      "d": "Natural stone cladding, white render, timber accents — built to last."
+    },
+    {
+      "icon": "🚗",
+      "t": "Private Parking",
+      "d": "Dedicated parking for every residence plus visitor spaces."
+    }
   ],
   "resTitle": "The Residences",
   "resSub": "Select a residence to view details. Lower terrace and upper terrace homes available.",
@@ -47,20 +78,58 @@
   "locTitle": "The Location",
   "locSub": "Quiet village living, minutes from everything.",
   "distances": [
-    { "p": "Paphos Town Centre", "d": "5 km · 8 min" },
-    { "p": "Paphos International Airport", "d": "12 km · 15 min" },
-    { "p": "Nearest Beach", "d": "9 km · 14 min" },
-    { "p": "Minthis Golf Resort", "d": "4 km · 7 min" },
-    { "p": "International School of Paphos", "d": "6 km · 10 min" },
-    { "p": "Paphos General Hospital", "d": "6 km · 10 min" }
+    {
+      "p": "Paphos Town Centre",
+      "d": "5 km · 8 min"
+    },
+    {
+      "p": "Paphos International Airport",
+      "d": "12 km · 15 min"
+    },
+    {
+      "p": "Nearest Beach",
+      "d": "9 km · 14 min"
+    },
+    {
+      "p": "Minthis Golf Resort",
+      "d": "4 km · 7 min"
+    },
+    {
+      "p": "International School of Paphos",
+      "d": "6 km · 10 min"
+    },
+    {
+      "p": "Paphos General Hospital",
+      "d": "6 km · 10 min"
+    }
   ],
   "timelineTitle": "Construction Timeline",
   "timeline": [
-    { "phase": "Pre-Sale", "desc": "Open now — September 2026", "done": true },
-    { "phase": "Foundations", "desc": "Begins at 60% reservations", "done": false },
-    { "phase": "Structure", "desc": "Concrete frame & envelope", "done": false },
-    { "phase": "Finishing", "desc": "Stone, render, interiors", "done": false },
-    { "phase": "Handover", "desc": "~18 months from start", "done": false }
+    {
+      "phase": "Pre-Sale",
+      "desc": "Open now — September 2026",
+      "done": true
+    },
+    {
+      "phase": "Foundations",
+      "desc": "Begins at 60% reservations",
+      "done": false
+    },
+    {
+      "phase": "Structure",
+      "desc": "Concrete frame & envelope",
+      "done": false
+    },
+    {
+      "phase": "Finishing",
+      "desc": "Stone, render, interiors",
+      "done": false
+    },
+    {
+      "phase": "Handover",
+      "desc": "~18 months from start",
+      "done": false
+    }
   ],
   "enquireTitle": "Register Your Interest",
   "enquireSub": "Pricing on request. Reserve with 30% and a signed contract, with staged payments thereafter.",
@@ -70,6 +139,7 @@
   "interest": "Residence of Interest",
   "message": "Message",
   "send": "Send Enquiry",
+  "sending": "Sending…",
   "anyUnit": "Any / Not sure yet",
   "footerNote": "Reservations require a 30% deposit and signed contract. Communal fees apply. Images are artist's impressions. Specifications available on request.",
   "poweredBy": "Powered by",
@@ -83,5 +153,6 @@
   "architect": "Architect",
   "threeBed": "3-bed",
   "currencyLabel": "Currency",
+  "languageLabel": "Language",
   "eurobankLink": "View Eurobank's official calculator"
 }

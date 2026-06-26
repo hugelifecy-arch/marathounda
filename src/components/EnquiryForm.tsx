@@ -32,27 +32,27 @@ export default function EnquiryForm() {
         <p className="text-olive text-center mb-12">{t('enquireSub')}</p>
 
         {status === 'sent' ? (
-          <div className="bg-sage/20 border border-sage text-sage p-6 rounded-lg text-center font-outfit">
+          <div role="status" className="bg-sage/20 border border-sage text-sage p-6 rounded-lg text-center font-outfit">
             {t('thankYou')}
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 bg-paper border border-line p-8 rounded-xl">
-            <input type="text" name="_hp" value={hp} onChange={(e) => setHp(e.target.value)} className="hidden" tabIndex={-1} autoComplete="off" />
+            <input type="text" name="_hp" value={hp} onChange={(e) => setHp(e.target.value)} className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
 
             {[
-              { name: 'name', label: t('name'), type: 'text' },
-              { name: 'email', label: t('email'), type: 'email' },
-              { name: 'phone', label: t('phone'), type: 'tel' },
-            ].map(({ name, label, type }) => (
+              { name: 'name', label: t('name'), type: 'text', autoComplete: 'name' },
+              { name: 'email', label: t('email'), type: 'email', autoComplete: 'email' },
+              { name: 'phone', label: t('phone'), type: 'tel', autoComplete: 'tel' },
+            ].map(({ name, label, type, autoComplete }) => (
               <div key={name}>
-                <label className="block text-sm font-outfit text-olive mb-1">{label}</label>
-                <input name={name} type={type} required className="w-full border border-line rounded px-3 py-2 font-outfit text-ink bg-limestone focus:outline-none focus:border-clay transition-colors" />
+                <label htmlFor={`enq-${name}`} className="block text-sm font-outfit text-olive mb-1">{label}</label>
+                <input id={`enq-${name}`} name={name} type={type} required autoComplete={autoComplete} className="w-full border border-line rounded px-3 py-2 font-outfit text-ink bg-limestone focus:outline-none focus:border-clay transition-colors" />
               </div>
             ))}
 
             <div>
-              <label className="block text-sm font-outfit text-olive mb-1">{t('interest')}</label>
-              <select name="interest" className="w-full border border-line rounded px-3 py-2 font-outfit text-ink bg-limestone focus:outline-none focus:border-clay">
+              <label htmlFor="enq-interest" className="block text-sm font-outfit text-olive mb-1">{t('interest')}</label>
+              <select id="enq-interest" name="interest" className="w-full border border-line rounded px-3 py-2 font-outfit text-ink bg-limestone focus:outline-none focus:border-clay">
                 <option value="">{t('anyUnit')}</option>
                 {UNITS.map((u) => (
                   <option key={u.id} value={u.id}>{t('unit')} {u.id} — {u.type} ({u.total} m²)</option>
@@ -61,14 +61,14 @@ export default function EnquiryForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-outfit text-olive mb-1">{t('message')}</label>
-              <textarea name="message" rows={4} className="w-full border border-line rounded px-3 py-2 font-outfit text-ink bg-limestone focus:outline-none focus:border-clay transition-colors resize-none" />
+              <label htmlFor="enq-message" className="block text-sm font-outfit text-olive mb-1">{t('message')}</label>
+              <textarea id="enq-message" name="message" rows={4} className="w-full border border-line rounded px-3 py-2 font-outfit text-ink bg-limestone focus:outline-none focus:border-clay transition-colors resize-none" />
             </div>
 
             <button type="submit" disabled={status === 'sending'} className="w-full bg-clay hover:bg-clayDark text-paper py-3 rounded font-outfit font-medium transition-colors disabled:opacity-60">
-              {status === 'sending' ? '...' : t('send')}
+              {status === 'sending' ? t('sending') : t('send')}
             </button>
-            {status === 'error' && <p className="text-red-600 text-sm text-center font-outfit">{t('formError')}</p>}
+            <p role="alert" aria-live="assertive" className="text-red-600 text-sm text-center font-outfit">{status === 'error' ? t('formError') : ''}</p>
           </form>
         )}
 

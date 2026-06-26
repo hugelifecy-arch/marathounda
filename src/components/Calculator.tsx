@@ -39,17 +39,18 @@ export default function Calculator() {
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           <div className="space-y-6">
             {[
-              { label: t('price'), value: price, min: 90000, max: 300000, step: 5000, set: setPrice, fmt: (v: number) => `€${v.toLocaleString()}` },
-              { label: t('deposit'), value: deposit, min: 20, max: 50, step: 5, set: setDeposit, fmt: (v: number) => `${v}%` },
-              { label: t('term'), value: term, min: 5, max: 30, step: 1, set: setTerm, fmt: (v: number) => `${v} yr` },
-              { label: t('rate'), value: rate, min: 2, max: 6, step: 0.1, set: setRate, fmt: (v: number) => `${v.toFixed(1)}%` },
-            ].map(({ label, value, min, max, step, set, fmt: fmtLocal }) => (
-              <div key={label}>
+              { id: 'price', label: t('price'), value: price, min: 90000, max: 300000, step: 5000, set: setPrice, fmt: (v: number) => `€${v.toLocaleString()}` },
+              { id: 'deposit', label: t('deposit'), value: deposit, min: 20, max: 50, step: 5, set: setDeposit, fmt: (v: number) => `${v}%` },
+              { id: 'term', label: t('term'), value: term, min: 5, max: 30, step: 1, set: setTerm, fmt: (v: number) => `${v} yr` },
+              { id: 'rate', label: t('rate'), value: rate, min: 2, max: 6, step: 0.1, set: setRate, fmt: (v: number) => `${v.toFixed(1)}%` },
+            ].map(({ id, label, value, min, max, step, set, fmt: fmtLocal }) => (
+              <div key={id}>
                 <div className="flex justify-between mb-2">
-                  <label className="text-paper/80 text-sm font-outfit">{label}</label>
+                  <label htmlFor={`calc-${id}`} className="text-paper/80 text-sm font-outfit">{label}</label>
                   <span className="text-gold text-sm font-outfit font-medium">{fmtLocal(value)}</span>
                 </div>
-                <input type="range" min={min} max={max} step={step} value={value}
+                <input id={`calc-${id}`} type="range" min={min} max={max} step={step} value={value}
+                  aria-valuetext={fmtLocal(value)}
                   onChange={(e) => set(Number(e.target.value))}
                   className="w-full h-1 bg-paper/20 rounded accent-clay cursor-pointer" />
               </div>
@@ -62,7 +63,7 @@ export default function Calculator() {
                 <button key={c} onClick={() => setCurrency(c)} className={`text-xs px-2 py-1 rounded font-outfit transition-colors ${c === currency ? 'bg-clay text-paper' : 'text-paper/40 hover:text-paper/80'}`}>{c}</button>
               ))}
             </div>
-            <div className="text-center mb-6">
+            <div className="text-center mb-6" aria-live="polite">
               <p className="text-paper/60 text-sm font-outfit mb-2">{t('monthly')}</p>
               <p className="font-fraunces text-5xl text-gold">{fmt(monthly)}</p>
               <p className="text-paper/40 text-xs font-outfit mt-2">/mo</p>

@@ -1,5 +1,12 @@
 {
-  "nav": ["Projekt", "Residenzen", "Galerie", "Lage", "Rechner", "Anfrage"],
+  "nav": [
+    "Projekt",
+    "Residenzen",
+    "Galerie",
+    "Lage",
+    "Rechner",
+    "Anfrage"
+  ],
   "heroTag": "Marathounda · Paphos · Zypern",
   "heroTitle": "Terra Something",
   "heroSub": "Zwölf moderne Hangresidenzen, wo mediterranes Licht auf erschwingliches Wohnen trifft.",
@@ -10,12 +17,36 @@
   "introText": "Hoch über Paphos im ruhigen Dorf Marathounda bietet Terra Something eine Sammlung von zwölf architektonisch gestalteten Maisonettes. Naturstein, weißer Putz und großzügige Verglasung rahmen ungehinderten Sonnenuntergang über dem Mittelmeer.",
   "sellingTitle": "Warum Terra Something",
   "selling": [
-    { "icon": "🏛️", "t": "5% MwSt.", "d": "Berechtigt zum ermäßigten MwSt.-Satz von 5% für Erstwohnsitze nach Gesetz 42(I)/2023." },
-    { "icon": "🌾", "t": "Ländliche Förderung", "d": "Käufer können für staatliche Wohnbeihilfen in ländlichen Gebieten berechtigt sein." },
-    { "icon": "📜", "t": "Eigene Grundbucheinträge", "d": "Jede Residenz wird mit eigenem unabhängigem Grundbucheintrag geliefert." },
-    { "icon": "🌅", "t": "Meeresblick bei Sonnenuntergang", "d": "Erhöhte Lage 300m+ mit Panoramablick auf die Küste." },
-    { "icon": "🏗️", "t": "Stein & Licht", "d": "Natursteinverkleidung, weißer Putz, Holzakzente — gebaut um zu dauern." },
-    { "icon": "🚗", "t": "Eigener Parkplatz", "d": "Eigener Parkplatz für jede Residenz plus Besucherstellplätze." }
+    {
+      "icon": "🏛️",
+      "t": "5% MwSt.",
+      "d": "Berechtigt zum ermäßigten MwSt.-Satz von 5% für Erstwohnsitze nach Gesetz 42(I)/2023."
+    },
+    {
+      "icon": "🌾",
+      "t": "Ländliche Förderung",
+      "d": "Käufer können für staatliche Wohnbeihilfen in ländlichen Gebieten berechtigt sein."
+    },
+    {
+      "icon": "📜",
+      "t": "Eigene Grundbucheinträge",
+      "d": "Jede Residenz wird mit eigenem unabhängigem Grundbucheintrag geliefert."
+    },
+    {
+      "icon": "🌅",
+      "t": "Meeresblick bei Sonnenuntergang",
+      "d": "Erhöhte Lage 300m+ mit Panoramablick auf die Küste."
+    },
+    {
+      "icon": "🏗️",
+      "t": "Stein & Licht",
+      "d": "Natursteinverkleidung, weißer Putz, Holzakzente — gebaut um zu dauern."
+    },
+    {
+      "icon": "🚗",
+      "t": "Eigener Parkplatz",
+      "d": "Eigener Parkplatz für jede Residenz plus Besucherstellplätze."
+    }
   ],
   "resTitle": "Die Residenzen",
   "resSub": "Wählen Sie eine Residenz für Details. Häuser auf unterer und oberer Terrasse verfügbar.",
@@ -47,20 +78,58 @@
   "locTitle": "Die Lage",
   "locSub": "Ruhiges Dorfleben, Minuten von allem.",
   "distances": [
-    { "p": "Paphos Stadtzentrum", "d": "5 km · 8 Min." },
-    { "p": "Flughafen Paphos", "d": "12 km · 15 Min." },
-    { "p": "Nächster Strand", "d": "9 km · 14 Min." },
-    { "p": "Minthis Golf Resort", "d": "4 km · 7 Min." },
-    { "p": "Internationale Schule Paphos", "d": "6 km · 10 Min." },
-    { "p": "Allgemeines Krankenhaus Paphos", "d": "6 km · 10 Min." }
+    {
+      "p": "Paphos Stadtzentrum",
+      "d": "5 km · 8 Min."
+    },
+    {
+      "p": "Flughafen Paphos",
+      "d": "12 km · 15 Min."
+    },
+    {
+      "p": "Nächster Strand",
+      "d": "9 km · 14 Min."
+    },
+    {
+      "p": "Minthis Golf Resort",
+      "d": "4 km · 7 Min."
+    },
+    {
+      "p": "Internationale Schule Paphos",
+      "d": "6 km · 10 Min."
+    },
+    {
+      "p": "Allgemeines Krankenhaus Paphos",
+      "d": "6 km · 10 Min."
+    }
   ],
   "timelineTitle": "Bauzeitplan",
   "timeline": [
-    { "phase": "Vorverkauf", "desc": "Jetzt offen — September 2026", "done": true },
-    { "phase": "Fundament", "desc": "Beginnt bei 60% Reservierungen", "done": false },
-    { "phase": "Struktur", "desc": "Betonrahmen & Hülle", "done": false },
-    { "phase": "Ausbau", "desc": "Stein, Putz, Innenausbau", "done": false },
-    { "phase": "Übergabe", "desc": "~18 Monate ab Start", "done": false }
+    {
+      "phase": "Vorverkauf",
+      "desc": "Jetzt offen — September 2026",
+      "done": true
+    },
+    {
+      "phase": "Fundament",
+      "desc": "Beginnt bei 60% Reservierungen",
+      "done": false
+    },
+    {
+      "phase": "Struktur",
+      "desc": "Betonrahmen & Hülle",
+      "done": false
+    },
+    {
+      "phase": "Ausbau",
+      "desc": "Stein, Putz, Innenausbau",
+      "done": false
+    },
+    {
+      "phase": "Übergabe",
+      "desc": "~18 Monate ab Start",
+      "done": false
+    }
   ],
   "enquireTitle": "Interesse anmelden",
   "enquireSub": "Preis auf Anfrage. Reservierung mit 30% und unterzeichnetem Vertrag, danach Ratenzahlungen.",
@@ -70,6 +139,7 @@
   "interest": "Gewünschte Residenz",
   "message": "Nachricht",
   "send": "Anfrage senden",
+  "sending": "Senden…",
   "anyUnit": "Beliebig / Noch nicht sicher",
   "footerNote": "Reservierungen erfordern 30% Anzahlung und unterzeichneten Vertrag. Gemeinschaftsgebühren anfallend. Bilder sind Künstlerimpressionen.",
   "poweredBy": "Unterstützt von",
@@ -83,5 +153,6 @@
   "architect": "Architekt",
   "threeBed": "3 Zimmer",
   "currencyLabel": "Währung",
+  "languageLabel": "Sprache",
   "eurobankLink": "Offiziellen Eurobank-Rechner ansehen"
 }
