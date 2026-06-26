@@ -81,5 +81,7 @@
   "address": "Marathounda Village, Paphos, Cyprus",
   "developer": "Developer",
   "architect": "Architect",
-  "threeBed": "3-bed"
+  "threeBed": "3-bed",
+  "currencyLabel": "Currency",
+  "eurobankLink": "View Eurobank's official calculator"
 }

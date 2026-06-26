@@ -81,5 +81,7 @@
   "address": "马拉松达村，帕福斯，塞浦路斯",
   "developer": "开发商",
   "architect": "建筑师",
-  "threeBed": "3 卧"
+  "threeBed": "3 卧",
+  "currencyLabel": "货币",
+  "eurobankLink": "查看 Eurobank 官方计算器"
 }

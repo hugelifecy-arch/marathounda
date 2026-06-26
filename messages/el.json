@@ -81,5 +81,7 @@
   "address": "Χωριό Μαραθούντα, Πάφος, Κύπρος",
   "developer": "Κατασκευαστής",
   "architect": "Αρχιτέκτονας",
-  "threeBed": "3 υπνοδωμάτια"
+  "threeBed": "3 υπνοδωμάτια",
+  "currencyLabel": "Νόμισμα",
+  "eurobankLink": "Δείτε τον επίσημο υπολογιστή της Eurobank"
 }

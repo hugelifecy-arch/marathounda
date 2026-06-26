@@ -1,17 +1,21 @@
 'use client';
 import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency, CURRENCIES } from '@/components/CurrencyProvider';
 
-const FX = { EUR: 1, USD: 1.08, GBP: 0.86, RUB: 98, CNY: 7.8, ILS: 3.9 };
-type Currency = keyof typeof FX;
+// Eurobank Cyprus Bank Housing Base Rate (BHBR) = Euribor 3M + 1.50% spread.
+// 3.90% as published 15 Jun 2026 — keep in sync with
+// https://www.eurobank.cy/en/personal/calculators/real-estate
+const EUROBANK_BHBR = 3.9;
+const EUROBANK_CALC_URL = 'https://www.eurobank.cy/en/personal/calculators/real-estate';
 
 export default function Calculator() {
   const t = useTranslations();
+  const { currency, setCurrency, format } = useCurrency();
   const [price, setPrice] = useState(180000);
   const [deposit, setDeposit] = useState(30);
   const [term, setTerm] = useState(20);
-  const [rate, setRate] = useState(3.06);
-  const [currency, setCurrency] = useState<Currency>('EUR');
+  const [rate, setRate] = useState(EUROBANK_BHBR);
 
   const { monthly, loan } = useMemo(() => {
     const loan = price * (1 - deposit / 100);
@@ -21,7 +25,7 @@ export default function Calculator() {
     return { monthly, loan };
   }, [price, deposit, term, rate]);
 
-  const fmt = (v: number) => new Intl.NumberFormat(undefined, { style: 'currency', currency, maximumFractionDigits: 0 }).format(v * FX[currency]);
+  const fmt = (v: number) => format(v);
 
   return (
     <div className="bg-dark py-24 px-4">
@@ -36,7 +40,7 @@ export default function Calculator() {
           <div className="space-y-6">
             {[
               { label: t('price'), value: price, min: 90000, max: 300000, step: 5000, set: setPrice, fmt: (v: number) => `€${v.toLocaleString()}` },
-              { label: t('deposit'), value: deposit, min: 10, max: 50, step: 5, set: setDeposit, fmt: (v: number) => `${v}%` },
+              { label: t('deposit'), value: deposit, min: 20, max: 50, step: 5, set: setDeposit, fmt: (v: number) => `${v}%` },
               { label: t('term'), value: term, min: 5, max: 30, step: 1, set: setTerm, fmt: (v: number) => `${v} yr` },
               { label: t('rate'), value: rate, min: 2, max: 6, step: 0.1, set: setRate, fmt: (v: number) => `${v.toFixed(1)}%` },
             ].map(({ label, value, min, max, step, set, fmt: fmtLocal }) => (
@@ -54,7 +58,7 @@ export default function Calculator() {
 
           <div className="bg-darker rounded-xl p-6 flex flex-col justify-center">
             <div className="flex justify-end mb-6 gap-2 flex-wrap">
-              {(Object.keys(FX) as Currency[]).map((c) => (
+              {CURRENCIES.map((c) => (
                 <button key={c} onClick={() => setCurrency(c)} className={`text-xs px-2 py-1 rounded font-outfit transition-colors ${c === currency ? 'bg-clay text-paper' : 'text-paper/40 hover:text-paper/80'}`}>{c}</button>
               ))}
             </div>
@@ -70,6 +74,14 @@ export default function Calculator() {
               </div>
             </div>
             <p className="text-paper/30 text-xs font-outfit mt-6 leading-relaxed">{t('calcNote')}</p>
+            <a
+              href={EUROBANK_CALC_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-4 text-gold text-xs font-outfit underline underline-offset-2 hover:text-paper transition-colors"
+            >
+              {t('eurobankLink')} →
+            </a>
           </div>
         </div>
       </div>

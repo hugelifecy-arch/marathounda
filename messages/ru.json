@@ -81,5 +81,7 @@
   "address": "Деревня Маратунда, Пафос, Кипр",
   "developer": "Застройщик",
   "architect": "Архитектор",
-  "threeBed": "3 спальни"
+  "threeBed": "3 спальни",
+  "currencyLabel": "Валюта",
+  "eurobankLink": "Открыть официальный калькулятор Eurobank"
 }

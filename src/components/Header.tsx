@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { locales } from '@/i18n';
+import { useCurrency, CURRENCIES } from '@/components/CurrencyProvider';
 import Link from 'next/link';
 
 const LOCALE_LABELS: Record<string, string> = { en: 'EN', ru: 'РУ', el: 'ΕΛ', he: 'עב', zh: '中', de: 'DE' };
@@ -12,8 +13,10 @@ export default function Header() {
   const t = useTranslations();
   const locale = useLocale();
   const pathname = usePathname();
+  const { currency, setCurrency } = useCurrency();
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [curOpen, setCurOpen] = useState(false);
 
   const navItems = (t.raw('nav') as string[]);
 
@@ -44,7 +47,25 @@ export default function Header() {
 
         <div className="flex items-center gap-3">
           <div className="relative">
-            <button onClick={() => setLangOpen(!langOpen)} className="text-sm text-olive hover:text-clay px-2 py-1 border border-line rounded transition-colors">
+            <button onClick={() => { setCurOpen(!curOpen); setLangOpen(false); }} aria-label={t('currencyLabel')} className="text-sm text-olive hover:text-clay px-2 py-1 border border-line rounded transition-colors">
+              {currency}
+            </button>
+            {curOpen && (
+              <div className="absolute end-0 top-full mt-1 bg-paper border border-line rounded shadow-lg z-50">
+                {CURRENCIES.map((c) => (
+                  <button
+                    key={c}
+                    onClick={() => { setCurrency(c); setCurOpen(false); }}
+                    className={`block w-full text-start px-4 py-2 text-sm hover:bg-limestone transition-colors ${c === currency ? 'text-clay font-semibold' : 'text-ink'}`}
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="relative">
+            <button onClick={() => { setLangOpen(!langOpen); setCurOpen(false); }} className="text-sm text-olive hover:text-clay px-2 py-1 border border-line rounded transition-colors">
               {LOCALE_LABELS[locale]}
             </button>
             {langOpen && (
