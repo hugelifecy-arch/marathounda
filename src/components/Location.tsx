@@ -28,6 +28,14 @@ export default function Location() {
                 title="Marathounda, Paphos"
               />
             </div>
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=34.7925,32.4828"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-3 text-clay hover:text-clayDark font-outfit text-sm font-medium"
+            >
+              <span aria-hidden="true">↗</span> {t('directions')}
+            </a>
           </div>
           <div className="space-y-3">
             {distances.map((item, i) => (

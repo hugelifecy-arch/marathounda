@@ -2,15 +2,41 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { UNITS, PLANS } from '@/data/units';
+import { UNITS, PLANS, type Price, type UnitStatus } from '@/data/units';
+import { useCurrency } from '@/components/CurrencyProvider';
+
+type BedFilter = 'all' | 2 | 3;
+
+// Per-status colour tokens used by both the picker grid and the detail badge.
+const STATUS_TONE: Record<UnitStatus, { sel: string; idle: string; badge: string }> = {
+  available: { sel: 'bg-sage text-paper border-sage', idle: 'bg-sage/20 text-sage border-sage hover:bg-sage/40', badge: 'bg-sage/20 text-sage' },
+  reserved: { sel: 'bg-clay text-paper border-clay', idle: 'bg-clay/20 text-clay border-clay hover:bg-clay/40', badge: 'bg-clay/20 text-clay' },
+  sold: { sel: 'bg-olive text-paper border-olive', idle: 'bg-olive/15 text-olive border-olive/60 hover:bg-olive/25', badge: 'bg-olive/15 text-olive' },
+};
 
 export default function Residences() {
   const t = useTranslations();
+  const { format } = useCurrency();
   const [selected, setSelected] = useState<number | null>(null);
   const [floor, setFloor] = useState<'ground' | 'first'>('ground');
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const [beds, setBeds] = useState<BedFilter>('all');
+  const [availableOnly, setAvailableOnly] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const unit = selected !== null ? UNITS.find((u) => u.id === selected) : null;
+
+  const visible = UNITS.filter(
+    (u) => (beds === 'all' || u.beds === beds) && (!availableOnly || u.status === 'available'),
+  );
+
+  const statusLabel = (s: UnitStatus) => (s === 'available' ? t('available') : s === 'reserved' ? t('reserved') : t('sold'));
+  const priceLabel = (p: Price) => (p === 'POA' ? t('poa') : format(p));
+
+  // Carry the chosen residence to the enquiry form, then scroll to it.
+  const enquireAbout = (id: number) => {
+    window.dispatchEvent(new CustomEvent('enquiry:prefill', { detail: id }));
+    document.getElementById('enquire')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   // Bring the detail panel into view when a residence is selected.
   useEffect(() => {
@@ -37,28 +63,51 @@ export default function Residences() {
         <h2 className="font-fraunces text-4xl md:text-5xl text-ink text-center mb-4">{t('resTitle')}</h2>
         <p className="text-olive text-center mb-12">{t('resSub')}</p>
 
-        <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 mb-8">
-          {UNITS.map((u) => (
+        <div className="flex flex-wrap gap-2 justify-center mb-8 font-outfit text-sm">
+          {([['all', t('showAll')], [2, t('twoBed')], [3, t('threeBed')]] as const).map(([value, label]) => (
             <button
-              key={u.id}
-              onClick={() => { setSelected(selected === u.id ? null : u.id); setFloor('ground'); }}
-              aria-pressed={selected === u.id}
-              aria-label={`${t('unit')} ${u.id}, ${u.beds === 3 ? t('threeBed') : `${u.beds}-bed`}, ${u.status === 'available' ? t('available') : t('reserved')}`}
-              className={`aspect-square rounded-lg border-2 flex flex-col items-center justify-center text-sm font-outfit font-semibold transition-all ${
-                u.status === 'available'
-                  ? selected === u.id ? 'bg-sage text-paper border-sage' : 'bg-sage/20 text-sage border-sage hover:bg-sage/40'
-                  : selected === u.id ? 'bg-clay text-paper border-clay' : 'bg-clay/20 text-clay border-clay hover:bg-clay/40'
-              } ${u.beds === 3 ? 'ring-2 ring-offset-1 ring-ink/30' : ''}`}
+              key={String(value)}
+              onClick={() => setBeds(value)}
+              aria-pressed={beds === value}
+              className={`px-4 py-1.5 rounded-full border transition-colors ${beds === value ? 'bg-ink text-paper border-ink' : 'bg-paper text-olive border-line hover:bg-line/40'}`}
             >
-              <span className="text-lg">{u.id}</span>
-              <span className="text-xs opacity-75">{u.beds}bd</span>
+              {label}
             </button>
           ))}
+          <button
+            onClick={() => setAvailableOnly((v) => !v)}
+            aria-pressed={availableOnly}
+            className={`px-4 py-1.5 rounded-full border transition-colors ${availableOnly ? 'bg-sage text-paper border-sage' : 'bg-paper text-olive border-line hover:bg-line/40'}`}
+          >
+            {t('availableOnly')}
+          </button>
         </div>
 
-        <div className="flex gap-4 justify-center mb-12 text-sm font-outfit">
+        {visible.length === 0 ? (
+          <p className="text-olive text-center mb-12 font-outfit">{t('noMatch')}</p>
+        ) : (
+          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 mb-8">
+            {visible.map((u) => (
+              <button
+                key={u.id}
+                onClick={() => { setSelected(selected === u.id ? null : u.id); setFloor('ground'); }}
+                aria-pressed={selected === u.id}
+                aria-label={`${t('unit')} ${u.id}, ${u.beds === 3 ? t('threeBed') : t('twoBed')}, ${statusLabel(u.status)}`}
+                className={`aspect-square rounded-lg border-2 flex flex-col items-center justify-center text-sm font-outfit font-semibold transition-all ${
+                  selected === u.id ? STATUS_TONE[u.status].sel : STATUS_TONE[u.status].idle
+                } ${u.beds === 3 ? 'ring-2 ring-offset-1 ring-ink/30' : ''} ${u.status === 'sold' ? 'line-through' : ''}`}
+              >
+                <span className="text-lg">{u.id}</span>
+                <span className="text-xs opacity-75">{u.beds}bd</span>
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="flex flex-wrap gap-4 justify-center mb-12 text-sm font-outfit">
           <span className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-sage inline-block" />{t('available')}</span>
           <span className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-clay inline-block" />{t('reserved')}</span>
+          <span className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-olive inline-block" />{t('sold')}</span>
           <span className="flex items-center gap-2"><span className="w-3 h-3 rounded border-2 border-ink/30 inline-block" />{t('threeBed')}</span>
         </div>
 
@@ -81,10 +130,11 @@ export default function Residences() {
                   <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('internal')}</span><span className="font-medium">{unit.internal} m²</span></div>
                   <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('verandas')}</span><span className="font-medium">{unit.veranda} m²</span></div>
                   {unit.storage > 0 && <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('storage')}</span><span className="font-medium">{unit.storage} m²</span></div>}
-                  <div className="flex justify-between py-1 font-semibold"><span>{t('totalArea')}</span><span>{unit.total} m²</span></div>
+                  <div className="flex justify-between border-b border-line py-1 font-semibold"><span>{t('totalArea')}</span><span>{unit.total} m²</span></div>
+                  <div className="flex justify-between py-1 font-semibold"><span>{t('priceLabel')}</span><span className="text-clay">{priceLabel(unit.price)}</span></div>
                 </div>
-                <div className={`inline-block px-3 py-1 rounded-full text-xs font-outfit font-semibold ${unit.status === 'available' ? 'bg-sage/20 text-sage' : 'bg-clay/20 text-clay'}`}>
-                  {unit.status === 'available' ? t('available') : t('reserved')}
+                <div className={`inline-block px-3 py-1 rounded-full text-xs font-outfit font-semibold ${STATUS_TONE[unit.status].badge}`}>
+                  {statusLabel(unit.status)}
                 </div>
               </div>
             </div>
@@ -120,9 +170,9 @@ export default function Residences() {
             </div>
 
             <div className="px-6 pb-6">
-              <a href="#enquire" className="block text-center bg-clay hover:bg-clayDark text-paper py-3 px-6 rounded font-outfit font-medium transition-colors">
+              <button onClick={() => enquireAbout(unit.id)} className="block w-full text-center bg-clay hover:bg-clayDark text-paper py-3 px-6 rounded font-outfit font-medium transition-colors">
                 {t('enquireUnit')}
-              </a>
+              </button>
             </div>
           </div>
         )}
