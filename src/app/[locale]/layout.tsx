@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales, rtlLocales, defaultLocale, siteUrl, type Locale } from '@/i18n';
+import { CurrencyProvider } from '@/components/CurrencyProvider';
 import type { Metadata } from 'next';
 import '../globals.css';
 
@@ -79,7 +80,9 @@ export default async function LocaleLayout({
     <html lang={params.locale} dir={isRTL ? 'rtl' : 'ltr'} className={`${fraunces.variable} ${outfit.variable}`}>
       <body className="bg-limestone font-outfit text-ink">
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <CurrencyProvider>
+            {children}
+          </CurrencyProvider>
         </NextIntlClientProvider>
       </body>
     </html>

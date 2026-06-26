@@ -81,5 +81,7 @@
   "address": "Dorf Marathounda, Paphos, Zypern",
   "developer": "Bauträger",
   "architect": "Architekt",
-  "threeBed": "3 Zimmer"
+  "threeBed": "3 Zimmer",
+  "currencyLabel": "Währung",
+  "eurobankLink": "Offiziellen Eurobank-Rechner ansehen"
 }

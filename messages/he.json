@@ -81,5 +81,7 @@
   "address": "כפר מאראתונדה, פאפוס, קפריסין",
   "developer": "יזם",
   "architect": "אדריכל",
-  "threeBed": "3 חדרים"
+  "threeBed": "3 חדרים",
+  "currencyLabel": "מטבע",
+  "eurobankLink": "למחשבון הרשמי של Eurobank"
 }
