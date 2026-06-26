@@ -79,6 +79,7 @@ export default async function LocaleLayout({
   return (
     <html lang={params.locale} dir={isRTL ? 'rtl' : 'ltr'} className={`${fraunces.variable} ${outfit.variable}`}>
       <body className="bg-limestone font-outfit text-ink">
+        <a href="#main" className="skip-link">{isRTL ? 'דלג לתוכן' : 'Skip to content'}</a>
         <NextIntlClientProvider messages={messages}>
           <CurrencyProvider>
             {children}

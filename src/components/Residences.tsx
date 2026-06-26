@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { UNITS, PLANS } from '@/data/units';
@@ -9,7 +9,13 @@ export default function Residences() {
   const [selected, setSelected] = useState<number | null>(null);
   const [floor, setFloor] = useState<'ground' | 'first'>('ground');
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const unit = selected !== null ? UNITS.find((u) => u.id === selected) : null;
+
+  // Bring the detail panel into view when a residence is selected.
+  useEffect(() => {
+    if (selected !== null) panelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, [selected]);
 
   useEffect(() => {
     if (!lightbox) return;
@@ -36,6 +42,8 @@ export default function Residences() {
             <button
               key={u.id}
               onClick={() => { setSelected(selected === u.id ? null : u.id); setFloor('ground'); }}
+              aria-pressed={selected === u.id}
+              aria-label={`${t('unit')} ${u.id}, ${u.beds === 3 ? t('threeBed') : `${u.beds}-bed`}, ${u.status === 'available' ? t('available') : t('reserved')}`}
               className={`aspect-square rounded-lg border-2 flex flex-col items-center justify-center text-sm font-outfit font-semibold transition-all ${
                 u.status === 'available'
                   ? selected === u.id ? 'bg-sage text-paper border-sage' : 'bg-sage/20 text-sage border-sage hover:bg-sage/40'
@@ -55,7 +63,7 @@ export default function Residences() {
         </div>
 
         {unit && (
-          <div className="bg-limestone border border-line rounded-xl overflow-hidden max-w-4xl mx-auto">
+          <div ref={panelRef} className="bg-limestone border border-line rounded-xl overflow-hidden max-w-4xl mx-auto scroll-mt-24">
             <div className="grid md:grid-cols-2 gap-0">
               <div className="relative aspect-video md:aspect-auto min-h-64">
                 <Image

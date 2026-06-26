@@ -11,6 +11,8 @@ export default function Hero() {
   const [slide, setSlide] = useState(0);
 
   useEffect(() => {
+    // Don't auto-advance for users who prefer reduced motion.
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
     const id = setInterval(() => setSlide((s) => (s + 1) % HERO_RENDERS.length), 4500);
     return () => clearInterval(id);
   }, []);

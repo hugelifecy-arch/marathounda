@@ -17,7 +17,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
     <>
       <JsonLd locale={params.locale} />
       <Header />
-      <main>
+      <main id="main">
         <Hero />
         <section id="project"><SellingPoints /></section>
         <section id="residences"><Residences /></section>
