@@ -7,7 +7,6 @@ import { UNITS, type Price, type UnitStatus } from '@/data/units';
 import { useCurrency } from '@/components/CurrencyProvider';
 import { useFocusTrap } from '@/components/useFocusTrap';
 import SitePlan from '@/components/SitePlan';
-import ResidenceCards from '@/components/ResidenceCards';
 import FloorPlan, { type FloorPlanLabels } from '@/components/FloorPlan';
 import { SPECIFICATION, RESERVE_STEPS } from '@/data/residenceContent';
 
@@ -89,25 +88,15 @@ export default function Residences() {
     };
   }, [planZoom]);
 
-  const pickUnit = (id: number) => { setSelected(selected === id ? null : id); setFloor('ground'); setTab('overview'); };
-
   return (
-    <div className="bg-paper pb-24">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Cinematic render hero */}
-        <div className="relative w-full overflow-hidden rounded-2xl md:rounded-3xl mb-10 shadow-xl shadow-ink/10">
-          <div className="relative aspect-[16/11] sm:aspect-[16/7]">
-            <Image src="/renders/render-05.jpg" alt={t('resTitle')} fill priority sizes="(max-width:1280px) 100vw, 1280px" className="object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/35 to-ink/5" />
-            <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 md:p-14">
-              <span className="text-gold text-xs sm:text-sm font-outfit tracking-[0.22em] uppercase mb-3">02 — {t('availLabel')}</span>
-              <h2 className="font-fraunces text-4xl md:text-6xl text-paper max-w-2xl leading-[1.05]">{t('resTitle')}</h2>
-              <p className="section-intro text-paper/85 max-w-xl mt-3 mb-0">{t('resSub')}</p>
-            </div>
-          </div>
+    <div className="bg-paper py-24 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-4">
+          <span className="text-olive text-sm font-outfit tracking-widest uppercase">02</span>
         </div>
+        <h2 className="font-fraunces text-4xl md:text-5xl text-ink text-center mb-4">{t('resTitle')}</h2>
+        <p className="section-intro text-olive text-center mb-12">{t('resSub')}</p>
 
-        {/* Filters */}
         <div className="flex flex-wrap gap-2 justify-center mb-8 font-outfit text-sm">
           {([['all', t('showAll')], [2, t('twoBed')], [3, t('threeBed')]] as const).map(([value, label]) => (
             <button
@@ -131,36 +120,19 @@ export default function Residences() {
         {visible.length === 0 && (
           <p className="text-olive text-center mb-4 font-outfit">{t('noMatch')}</p>
         )}
-
-        {/* Residence cards — imagery-led selector */}
-        <ResidenceCards
-          units={UNITS}
-          visibleIds={new Set(visible.map((u) => u.id))}
-          selected={selected}
-          onSelect={pickUnit}
-          statusLabel={statusLabel}
-          labels={{ unit: t('unit'), beds2: t('twoBed'), beds3: t('threeBed'), available: t('available'), reserved: t('reserved'), sold: t('sold'), view: t('viewResidence') }}
-        />
-
-        {/* Secondary: site orientation (where each home sits on the slope) */}
-        <details className="group mt-8 max-w-3xl mx-auto">
-          <summary className="cursor-pointer list-none flex items-center justify-center gap-2 text-sm font-outfit text-olive hover:text-clay transition-colors">
-            <span className="underline underline-offset-4 decoration-line">{t('sitePlanNote')}</span>
-            <span className="transition-transform group-open:rotate-180" aria-hidden="true">⌄</span>
-          </summary>
-          <div className="mt-4 rounded-xl border border-line bg-limestone/50 p-4 sm:p-6">
-            <SitePlan
-              units={visible}
-              selected={selected}
-              onSelect={pickUnit}
-              statusLabel={statusLabel}
-              unitLabel={t('unit')}
-              twoBed={t('twoBed')}
-              threeBed={t('threeBed')}
-              availabilityLabel={t('availability')}
-            />
-          </div>
-        </details>
+        <div className="max-w-3xl mx-auto mb-4 rounded-xl border border-line bg-limestone/50 p-4 sm:p-6">
+          <SitePlan
+            units={visible}
+            selected={selected}
+            onSelect={(id) => { setSelected(selected === id ? null : id); setFloor('ground'); setTab('overview'); }}
+            statusLabel={statusLabel}
+            unitLabel={t('unit')}
+            twoBed={t('twoBed')}
+            threeBed={t('threeBed')}
+            availabilityLabel={t('availability')}
+          />
+        </div>
+        <p className="text-center text-xs text-olive italic mb-12 font-outfit">{t('sitePlanNote')}</p>
 
         {unit && (
           <div ref={panelRef} className="bg-limestone border border-line rounded-xl overflow-hidden max-w-4xl mx-auto scroll-mt-24">
