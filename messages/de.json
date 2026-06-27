@@ -187,5 +187,12 @@
   "reserveNote": "Reservierung: 30% Anzahlung und unterzeichneter Vertrag, danach gestaffelte Zahlungen.",
   "previousImage": "Vorheriges Bild",
   "nextImage": "Nächstes Bild",
-  "sitePlanNote": "Indikativer Lageplan, nicht maßstabsgetreu. Genaue Flächen je Residenz."
+  "sitePlanNote": "Indikativer Lageplan, nicht maßstabsgetreu. Genaue Flächen je Residenz.",
+  "tabOverview": "Überblick",
+  "tabPlans": "Grundrisse & Pläne",
+  "tabSpec": "Spezifikation",
+  "tabReserve": "So reservieren Sie",
+  "specCaption": "Indikative Spezifikation — die endgültige Material- & Ausstattungsliste wird mit dem Vertrag bereitgestellt.",
+  "reserveCaption": "Indikativer Ablauf — genaue Bedingungen werden in Reservierungsvereinbarung und Kaufvertrag bestätigt.",
+  "estimateThis": "Diese Wohnung berechnen"
 }

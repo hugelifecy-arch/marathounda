@@ -187,5 +187,12 @@
   "reserveNote": "Reservation: 30% deposit and a signed contract, with staged payments thereafter.",
   "previousImage": "Previous image",
   "nextImage": "Next image",
-  "sitePlanNote": "Indicative site plan, not to scale. Exact areas are shown in each residence."
+  "sitePlanNote": "Indicative site plan, not to scale. Exact areas are shown in each residence.",
+  "tabOverview": "Overview",
+  "tabPlans": "Floor Plans & Drawings",
+  "tabSpec": "Specification",
+  "tabReserve": "How to Reserve",
+  "specCaption": "Indicative specification — the final materials & finishes schedule is provided with the contract.",
+  "reserveCaption": "Indicative process — exact terms are confirmed in your reservation agreement and purchase contract.",
+  "estimateThis": "Estimate this home"
 }

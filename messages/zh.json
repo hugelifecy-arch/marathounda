@@ -187,5 +187,12 @@
   "reserveNote": "预订：30% 定金及签署合同，其后分阶段付款。",
   "previousImage": "上一张",
   "nextImage": "下一张",
-  "sitePlanNote": "示意性总平面图，非按比例。各住宅的确切面积见详情。"
+  "sitePlanNote": "示意性总平面图，非按比例。各住宅的确切面积见详情。",
+  "tabOverview": "概览",
+  "tabPlans": "平面图与图纸",
+  "tabSpec": "规格",
+  "tabReserve": "如何预订",
+  "specCaption": "示意性规格——最终的材料与饰面清单将随合同提供。",
+  "reserveCaption": "示意性流程——确切条款以预订协议及购房合同为准。",
+  "estimateThis": "估算此住宅"
 }
