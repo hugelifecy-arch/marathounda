@@ -1,6 +1,7 @@
 'use client';
 import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
+import { ArrowSquareOut } from '@phosphor-icons/react';
 import { useCurrency, CURRENCIES } from '@/components/CurrencyProvider';
 
 // Eurobank Cyprus Bank Housing Base Rate (BHBR) = Euribor 3M + 1.50% spread.
@@ -34,7 +35,7 @@ export default function Calculator() {
           <span className="text-gold text-sm font-outfit tracking-widest uppercase">05</span>
         </div>
         <h2 className="font-fraunces text-4xl md:text-5xl text-paper text-center mb-4">{t('calcTitle')}</h2>
-        <p className="text-paper/60 text-center mb-12">{t('calcSub')}</p>
+        <p className="section-intro text-paper/70 text-center mb-12">{t('calcSub')}</p>
 
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           <div className="space-y-6">
@@ -47,7 +48,7 @@ export default function Calculator() {
               <div key={id}>
                 <div className="flex justify-between mb-2">
                   <label htmlFor={`calc-${id}`} className="text-paper/80 text-sm font-outfit">{label}</label>
-                  <span className="text-gold text-sm font-outfit font-medium">{fmtLocal(value)}</span>
+                  <span className="text-gold text-sm font-outfit font-medium tnum">{fmtLocal(value)}</span>
                 </div>
                 <input id={`calc-${id}`} type="range" min={min} max={max} step={step} value={value}
                   aria-valuetext={fmtLocal(value)}
@@ -60,28 +61,28 @@ export default function Calculator() {
           <div className="bg-darker rounded-xl p-6 flex flex-col justify-center">
             <div className="flex justify-end mb-6 gap-2 flex-wrap">
               {CURRENCIES.map((c) => (
-                <button key={c} onClick={() => setCurrency(c)} className={`text-xs px-2 py-1 rounded font-outfit transition-colors ${c === currency ? 'bg-clay text-paper' : 'text-paper/40 hover:text-paper/80'}`}>{c}</button>
+                <button key={c} onClick={() => setCurrency(c)} aria-pressed={c === currency} className={`text-xs px-3 py-2 min-h-[44px] inline-flex items-center rounded font-outfit transition-colors ${c === currency ? 'bg-clayDark text-paper font-semibold' : 'text-paper/70 hover:text-paper'}`}>{c}</button>
               ))}
             </div>
             <div className="text-center mb-6" aria-live="polite">
               <p className="text-paper/60 text-sm font-outfit mb-2">{t('monthly')}</p>
-              <p className="font-fraunces text-5xl text-gold">{fmt(monthly)}</p>
-              <p className="text-paper/40 text-xs font-outfit mt-2">/mo</p>
+              <p className="font-fraunces text-5xl text-gold tnum">{fmt(monthly)}</p>
+              <p className="text-paper/70 text-xs font-outfit mt-2">/mo</p>
             </div>
             <div className="border-t border-paper/10 pt-4">
               <div className="flex justify-between text-sm font-outfit">
-                <span className="text-paper/60">{t('loanAmount')}</span>
-                <span className="text-paper">{fmt(loan)}</span>
+                <span className="text-paper/70">{t('loanAmount')}</span>
+                <span className="text-paper tnum">{fmt(loan)}</span>
               </div>
             </div>
-            <p className="text-paper/30 text-xs font-outfit mt-6 leading-relaxed">{t('calcNote')}</p>
+            <p className="text-onDarkMuted text-sm font-outfit mt-6 leading-relaxed">{t('calcNote')}</p>
             <a
               href={EUROBANK_CALC_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-4 text-gold text-xs font-outfit underline underline-offset-2 hover:text-paper transition-colors"
+              className="inline-flex items-center gap-1 mt-4 text-gold text-xs font-outfit underline underline-offset-2 hover:text-paper transition-colors"
             >
-              {t('eurobankLink')} →
+              {t('eurobankLink')} <ArrowSquareOut size={14} aria-hidden="true" />
             </a>
           </div>
         </div>

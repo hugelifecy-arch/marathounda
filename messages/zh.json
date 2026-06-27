@@ -12,38 +12,32 @@
   "heroSub": "十二座现代山坡住宅，地中海阳光与可负担生活的交汇。",
   "heroCta": "浏览住宅",
   "heroCta2": "登记意向",
-  "availLabel": "12 套住宅中可售",
+  "availLabel": "12 套住宅 · 预售于 2026 年 9 月开放",
   "introTitle": "高地生活，稳健价值",
   "introText": "坐落于帕福斯之上宁静的马拉松达村，Terra Something 是十二座由建筑师设计的复式住宅。天然石材、洁白墙面与宽敞玻璃，将地中海日落美景尽收眼底。",
   "sellingTitle": "为何选择 Terra Something",
   "selling": [
     {
-      "icon": "🏛️",
       "t": "5% 增值税优惠",
       "d": "符合塞浦路斯法律42(I)/2023主要住宅5%低增值税资格。"
     },
     {
-      "icon": "🌾",
       "t": "农村补贴",
       "d": "购房者可能有资格享受农村地区政府住房补贴。"
     },
     {
-      "icon": "📜",
       "t": "独立产权证",
       "d": "每套住宅均有独立产权证书。"
     },
     {
-      "icon": "🌅",
       "t": "海景日落",
       "d": "海拔300米+，可欣赏地中海西向全景日落。"
     },
     {
-      "icon": "🏗️",
       "t": "石材与光",
       "d": "天然石材、白色粉刷、木质元素——经久耐用。"
     },
     {
-      "icon": "🚗",
       "t": "私人停车",
       "d": "每套住宅配备专属停车位及访客停车位。"
     }
@@ -104,6 +98,8 @@
     }
   ],
   "timelineTitle": "施工时间表",
+  "timelineDone": "已完成",
+  "timelineUpcoming": "即将进行",
   "timeline": [
     {
       "phase": "设计完成",
@@ -147,7 +143,7 @@
     }
   ],
   "enquireTitle": "登记意向",
-  "enquireSub": "价格面议。支付30%定金并签署合同，之后分阶段付款。",
+  "enquireSub": "登记您的兴趣，以便在 2026 年 9 月预售开放时获取价格、户型图及优先权。",
   "name": "全名",
   "email": "电子邮件",
   "phone": "电话",
@@ -157,7 +153,7 @@
   "sending": "发送中…",
   "anyUnit": "任意 / 尚未决定",
   "footerNote": "预订需支付30%定金并签署合同。适用公共费用。图片为艺术效果图。",
-  "poweredBy": "技术支持",
+  "poweredBy": "项目融资",
   "thankYou": "谢谢！我们将尽快与您联系。",
   "formError": "出现错误，请重试。",
   "contactPhone": "电话",
@@ -179,5 +175,16 @@
   "noMatch": "没有符合这些筛选条件的住宅。",
   "consent": "我同意 Terra Something 存储我的信息以回复此询问。",
   "consentRequired": "请确认您的同意以继续。",
-  "directions": "获取路线"
+  "directions": "获取路线",
+  "whatsappLabel": "通过 WhatsApp 联系我们",
+  "openMenu": "打开菜单",
+  "closeMenu": "关闭菜单",
+  "close": "关闭",
+  "requiredField": "必填",
+  "optional": "选填",
+  "errRequired": "此字段为必填项",
+  "errEmail": "请输入有效的电子邮件地址",
+  "reserveNote": "预订：30% 定金及签署合同，其后分阶段付款。",
+  "previousImage": "上一张",
+  "nextImage": "下一张"
 }

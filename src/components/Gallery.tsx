@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { CaretLeft, CaretRight, X } from '@phosphor-icons/react';
 import { useFocusTrap } from '@/components/useFocusTrap';
 
 const GALLERY_KEYS = ['01','02','03','04','05','06','07','08','09','10','11','12'];
@@ -35,10 +36,10 @@ export default function Gallery() {
     <div className="bg-limestone py-24 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-4">
-          <span className="text-clay text-sm font-outfit tracking-widest uppercase">03</span>
+          <span className="text-olive text-sm font-outfit tracking-widest uppercase">03</span>
         </div>
         <h2 className="font-fraunces text-4xl md:text-5xl text-ink text-center mb-4">{t('galleryTitle')}</h2>
-        <p className="text-olive text-center mb-12">{t('gallerySub')}</p>
+        <p className="section-intro text-olive text-center mb-12">{t('gallerySub')}</p>
 
         <div className="columns-2 md:columns-3 lg:columns-4 gap-3 [&>button]:mb-3">
           {GALLERY_KEYS.map((key, i) => (
@@ -53,7 +54,7 @@ export default function Gallery() {
                 alt={`Terra Something — Marathounda residence exterior render ${i + 1}`}
                 width={1920}
                 height={1080}
-                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-auto object-cover [@media(hover:hover)]:group-hover:scale-105 transition-transform duration-200"
               />
             </button>
           ))}
@@ -61,18 +62,18 @@ export default function Gallery() {
       </div>
 
       {lightbox !== null && (
-        <div ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('galleryTitle')} className="fixed inset-0 bg-ink/95 z-50 flex items-center justify-center outline-none" onClick={close}>
+        <div ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('galleryTitle')} className="fixed inset-0 bg-ink/95 z-[60] flex items-center justify-center outline-none" onClick={close}>
           <div className="relative w-full max-w-5xl max-h-full p-4" onClick={(e) => e.stopPropagation()}>
             <div className="relative aspect-video">
               <Image src={`/renders/render-${GALLERY_KEYS[lightbox]}.jpg`} alt={`Terra Something — Marathounda residence exterior render ${lightbox + 1}`} fill className="object-contain" />
             </div>
             <div className="flex items-center justify-between mt-4">
-              <button onClick={prev} aria-label="Previous image" className="text-paper text-2xl px-4 py-2 hover:text-gold transition-colors">&#8249;</button>
-              <span className="text-paper/60 text-sm font-outfit">{lightbox + 1} / {GALLERY_KEYS.length}</span>
-              <button onClick={next} aria-label="Next image" className="text-paper text-2xl px-4 py-2 hover:text-gold transition-colors">&#8250;</button>
+              <button onClick={prev} aria-label={t('previousImage')} className="text-paper px-4 py-3 hover:text-gold active:text-gold transition-colors"><CaretLeft size={28} aria-hidden="true" /></button>
+              <span aria-live="polite" aria-atomic="true" className="text-paper/70 text-sm font-outfit tnum">{lightbox + 1} / {GALLERY_KEYS.length}</span>
+              <button onClick={next} aria-label={t('nextImage')} className="text-paper px-4 py-3 hover:text-gold active:text-gold transition-colors"><CaretRight size={28} aria-hidden="true" /></button>
             </div>
           </div>
-          <button onClick={close} aria-label="Close" className="absolute top-4 end-4 text-paper text-3xl hover:text-gold transition-colors">&#x2715;</button>
+          <button onClick={close} aria-label={t('close')} className="absolute top-4 end-4 text-paper p-3 min-w-[44px] min-h-[44px] inline-flex items-center justify-center hover:text-gold active:text-gold transition-colors"><X size={24} aria-hidden="true" /></button>
         </div>
       )}
     </div>

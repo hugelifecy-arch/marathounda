@@ -27,6 +27,14 @@
   }
 }
 
+/* Tabular figures for numeric/data display — prevents horizontal jitter as
+   live values change and aligns stacked numeric columns. */
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* Shared readable measure for section intro paragraphs (~65–75 chars),
+   so long translations don't run edge-to-edge on wide screens. */
+.section-intro { max-width: 42rem; margin-inline: auto; }
+
 /* Skip-to-content link: visually hidden until focused. */
 .skip-link {
   position: absolute;

@@ -12,38 +12,32 @@
   "heroSub": "Twelve contemporary hillside residences where Mediterranean light meets attainable living.",
   "heroCta": "Explore Residences",
   "heroCta2": "Register Interest",
-  "availLabel": "of 12 residences available",
+  "availLabel": "12 residences · Pre-Sale opens September 2026",
   "introTitle": "Elevated Living, Grounded Value",
   "introText": "Set high above Paphos in the tranquil village of Marathounda, Terra Something is a collection of twelve architect-designed maisonettes. Natural stone, crisp white render and generous glazing frame uninterrupted sunset views across the Mediterranean — all within ten minutes of the city.",
   "sellingTitle": "Why Terra Something",
   "selling": [
     {
-      "icon": "🏛️",
       "t": "5% VAT Eligible",
       "d": "Qualifies for the reduced 5% VAT rate on primary residences under Law 42(I)/2023."
     },
     {
-      "icon": "🌾",
       "t": "Rural Grant",
       "d": "Buyers may be eligible for government housing grants available in rural areas."
     },
     {
-      "icon": "📜",
       "t": "Separate Title Deeds",
       "d": "Each residence is delivered with its own independent title deed."
     },
     {
-      "icon": "🌅",
       "t": "Sunset Sea Views",
       "d": "Elevated 300m+ position with panoramic western views over the coast."
     },
     {
-      "icon": "🏗️",
       "t": "Stone & Light",
       "d": "Natural stone cladding, white render, timber accents — built to last."
     },
     {
-      "icon": "🚗",
       "t": "Private Parking",
       "d": "Dedicated parking for every residence plus visitor spaces."
     }
@@ -104,6 +98,8 @@
     }
   ],
   "timelineTitle": "Construction Timeline",
+  "timelineDone": "Completed",
+  "timelineUpcoming": "Upcoming",
   "timeline": [
     {
       "phase": "Design Completed",
@@ -147,7 +143,7 @@
     }
   ],
   "enquireTitle": "Register Your Interest",
-  "enquireSub": "Pricing on request. Reserve with 30% and a signed contract, with staged payments thereafter.",
+  "enquireSub": "Register your interest to receive pricing, floor plans and priority access when Pre-Sale opens in September 2026.",
   "name": "Full Name",
   "email": "Email",
   "phone": "Phone",
@@ -157,7 +153,7 @@
   "sending": "Sending…",
   "anyUnit": "Any / Not sure yet",
   "footerNote": "Reservations require a 30% deposit and signed contract. Communal fees apply. Images are artist's impressions. Specifications available on request.",
-  "poweredBy": "Powered by",
+  "poweredBy": "Project Finance",
   "thankYou": "Thank you! We'll be in touch shortly.",
   "formError": "Something went wrong. Please try again.",
   "contactPhone": "Phone",
@@ -179,5 +175,16 @@
   "noMatch": "No residences match these filters.",
   "consent": "I consent to Terra Something storing my details to respond to this enquiry.",
   "consentRequired": "Please confirm your consent to continue.",
-  "directions": "Get directions"
+  "directions": "Get directions",
+  "whatsappLabel": "Contact us on WhatsApp",
+  "openMenu": "Open menu",
+  "closeMenu": "Close menu",
+  "close": "Close",
+  "requiredField": "required",
+  "optional": "optional",
+  "errRequired": "This field is required",
+  "errEmail": "Please enter a valid email address",
+  "reserveNote": "Reservation: 30% deposit and a signed contract, with staged payments thereafter.",
+  "previousImage": "Previous image",
+  "nextImage": "Next image"
 }

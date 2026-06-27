@@ -12,38 +12,32 @@
   "heroSub": "Zwölf moderne Hangresidenzen, wo mediterranes Licht auf erschwingliches Wohnen trifft.",
   "heroCta": "Residenzen erkunden",
   "heroCta2": "Interesse anmelden",
-  "availLabel": "von 12 Residenzen verfügbar",
+  "availLabel": "12 Residenzen · Vorverkauf startet September 2026",
   "introTitle": "Erhobenes Wohnen, solider Wert",
   "introText": "Hoch über Paphos im ruhigen Dorf Marathounda bietet Terra Something eine Sammlung von zwölf architektonisch gestalteten Maisonettes. Naturstein, weißer Putz und großzügige Verglasung rahmen ungehinderten Sonnenuntergang über dem Mittelmeer.",
   "sellingTitle": "Warum Terra Something",
   "selling": [
     {
-      "icon": "🏛️",
       "t": "5% MwSt.",
       "d": "Berechtigt zum ermäßigten MwSt.-Satz von 5% für Erstwohnsitze nach Gesetz 42(I)/2023."
     },
     {
-      "icon": "🌾",
       "t": "Ländliche Förderung",
       "d": "Käufer können für staatliche Wohnbeihilfen in ländlichen Gebieten berechtigt sein."
     },
     {
-      "icon": "📜",
       "t": "Eigene Grundbucheinträge",
       "d": "Jede Residenz wird mit eigenem unabhängigem Grundbucheintrag geliefert."
     },
     {
-      "icon": "🌅",
       "t": "Meeresblick bei Sonnenuntergang",
       "d": "Erhöhte Lage 300m+ mit Panoramablick auf die Küste."
     },
     {
-      "icon": "🏗️",
       "t": "Stein & Licht",
       "d": "Natursteinverkleidung, weißer Putz, Holzakzente — gebaut um zu dauern."
     },
     {
-      "icon": "🚗",
       "t": "Eigener Parkplatz",
       "d": "Eigener Parkplatz für jede Residenz plus Besucherstellplätze."
     }
@@ -104,6 +98,8 @@
     }
   ],
   "timelineTitle": "Bauzeitplan",
+  "timelineDone": "Abgeschlossen",
+  "timelineUpcoming": "Bevorstehend",
   "timeline": [
     {
       "phase": "Planung abgeschlossen",
@@ -147,7 +143,7 @@
     }
   ],
   "enquireTitle": "Interesse anmelden",
-  "enquireSub": "Preis auf Anfrage. Reservierung mit 30% und unterzeichnetem Vertrag, danach Ratenzahlungen.",
+  "enquireSub": "Bekunden Sie Ihr Interesse, um Preise, Grundrisse und bevorzugten Zugang zum Vorverkaufsstart im September 2026 zu erhalten.",
   "name": "Vollständiger Name",
   "email": "E-Mail",
   "phone": "Telefon",
@@ -157,7 +153,7 @@
   "sending": "Senden…",
   "anyUnit": "Beliebig / Noch nicht sicher",
   "footerNote": "Reservierungen erfordern 30% Anzahlung und unterzeichneten Vertrag. Gemeinschaftsgebühren anfallend. Bilder sind Künstlerimpressionen.",
-  "poweredBy": "Unterstützt von",
+  "poweredBy": "Projektfinanzierung",
   "thankYou": "Vielen Dank! Wir melden uns in Kürze bei Ihnen.",
   "formError": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
   "contactPhone": "Telefon",
@@ -179,5 +175,16 @@
   "noMatch": "Keine Residenzen entsprechen diesen Filtern.",
   "consent": "Ich willige ein, dass Terra Something meine Daten zur Beantwortung dieser Anfrage speichert.",
   "consentRequired": "Bitte bestätigen Sie Ihre Einwilligung, um fortzufahren.",
-  "directions": "Route planen"
+  "directions": "Route planen",
+  "whatsappLabel": "Kontakt über WhatsApp",
+  "openMenu": "Menü öffnen",
+  "closeMenu": "Menü schließen",
+  "close": "Schließen",
+  "requiredField": "erforderlich",
+  "optional": "optional",
+  "errRequired": "Dieses Feld ist erforderlich",
+  "errEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+  "reserveNote": "Reservierung: 30% Anzahlung und unterzeichneter Vertrag, danach gestaffelte Zahlungen.",
+  "previousImage": "Vorheriges Bild",
+  "nextImage": "Nächstes Bild"
 }
