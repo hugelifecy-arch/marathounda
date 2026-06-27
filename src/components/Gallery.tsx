@@ -39,7 +39,7 @@ export default function Gallery() {
           <span className="text-olive text-sm font-outfit tracking-widest uppercase">03</span>
         </div>
         <h2 className="font-fraunces text-4xl md:text-5xl text-ink text-center mb-4">{t('galleryTitle')}</h2>
-        <p className="text-olive text-center mb-12">{t('gallerySub')}</p>
+        <p className="section-intro text-olive text-center mb-12">{t('gallerySub')}</p>
 
         <div className="columns-2 md:columns-3 lg:columns-4 gap-3 [&>button]:mb-3">
           {GALLERY_KEYS.map((key, i) => (

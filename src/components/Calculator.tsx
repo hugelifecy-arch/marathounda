@@ -35,7 +35,7 @@ export default function Calculator() {
           <span className="text-gold text-sm font-outfit tracking-widest uppercase">05</span>
         </div>
         <h2 className="font-fraunces text-4xl md:text-5xl text-paper text-center mb-4">{t('calcTitle')}</h2>
-        <p className="text-paper/60 text-center mb-12">{t('calcSub')}</p>
+        <p className="section-intro text-paper/70 text-center mb-12">{t('calcSub')}</p>
 
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           <div className="space-y-6">
@@ -48,7 +48,7 @@ export default function Calculator() {
               <div key={id}>
                 <div className="flex justify-between mb-2">
                   <label htmlFor={`calc-${id}`} className="text-paper/80 text-sm font-outfit">{label}</label>
-                  <span className="text-gold text-sm font-outfit font-medium">{fmtLocal(value)}</span>
+                  <span className="text-gold text-sm font-outfit font-medium tnum">{fmtLocal(value)}</span>
                 </div>
                 <input id={`calc-${id}`} type="range" min={min} max={max} step={step} value={value}
                   aria-valuetext={fmtLocal(value)}

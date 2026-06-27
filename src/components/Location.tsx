@@ -13,7 +13,7 @@ export default function Location() {
           <span className="text-olive text-sm font-outfit tracking-widest uppercase">04</span>
         </div>
         <h2 className="font-fraunces text-4xl md:text-5xl text-ink text-center mb-4">{t('locTitle')}</h2>
-        <p className="text-olive text-center mb-12">{t('locSub')}</p>
+        <p className="section-intro text-olive text-center mb-12">{t('locSub')}</p>
 
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           <div>
