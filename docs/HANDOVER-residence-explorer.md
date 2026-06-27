@@ -5,11 +5,21 @@
 
 ---
 
+## ✅ SIGN-OFF — Residence Explorer v2 DELIVERED & DEPLOYED (2026-06-27) — *initialed: CC*
+The two drawing deliverables the user ordered ("1, then 2") are **complete, verified, and live on production**:
+- **Task 1 — Masterplan → INEX level.** `SitePlan.tsx` rebuilt from the real architect geometry (ΕΠΒ sheet 1): a single terraced ribbon of 12 maisonettes stepping diagonally down a wedge plot, east-facing private verandas, olive grove + landscaped gardens, access lane with parking spurs + entrance pin, NW hillside terrain bands, valley/sea-view edge, terrace risers + soft shadows for depth, **differentiated 3-bed end units (1 & 12)**, clickable numeral plates, and an in-plan **localised availability legend**. Adversarial judge-panel loop: 5.5 → 7 → ~8/10 vs the INEX bar. Accessibility preserved.
+- **Task 2 — Floor plans → INEX level.** New `FloorPlan.tsx` renders **clean inline-SVG presentation plans** (poché walls, soft fills, furniture line-art, localised room labels, door swings, veranda, north compass, real per-level area, "indicative layout" caption) for Type A (3-bed) & Type B (2-bed) × living + bedrooms levels. **Replaces the WRONG `typeA/B-*.png` CAD crops (deleted).** Judge loop: 7.5 → ~8.5/10.
+- **Shipped:** branch `claude/residence-explorer-2` → merged to `main` (merge `722fc3c`, commits `2e5e946` masterplan + `b7e6ef4` floor plans) → pushed → Vercel production build **verified green locally** (`next build`, 15/15 static pages, types clean). New i18n: `availability` + 14 `fp*` room-label keys ×6 locales (parity held).
+- **Working dir note:** this v2 work was done in the **OneDrive checkout** (`...\K Capital\marathounda`), NOT the old worktree — because the Claude preview MCP is rooted there. The old worktree branch `claude/residence-explorer` (WIP masterplan `ed19adf`, superseded) can be deleted.
+
+**Still open (not blocking; needs USER input):** real Specification material/finish schedule + How-to-Reserve legal terms (replace `[TBC]`, then translate ×6); Rural-Grant scheme name + ceiling; trust facts (reg numbers, ETEK, escrow); optional commissioned **aerial renders** to enable a true INEX 360° turntable. See §9.
+
+---
+
 ## 0. TL;DR — where we are
 - **Live site (production):** https://marathounda.vercel.app/en — Next.js 14 site for **Terra Something**, 12 maisonettes, Marathounda, Paphos. Repo: https://github.com/hugelifecy-arch/marathounda (`main` auto-deploys to Vercel).
-- **Shipped & live:** (a) a full UX/UI overhaul (AA contrast, 44px touch, Phosphor icons, accessible nav/forms, etc.), (b) **Residence Explorer Phase 1** — an interactive site plan + tabbed unit panel (Overview / Floor Plans & Drawings / Specification / How to Reserve).
-- **In progress on branch `claude/residence-explorer`** (worktree: `C:\Users\geras\.config\superpowers\worktrees\marathounda\residence-explorer`): restyling the masterplan + (next) processing the real floor plans. **The current floor-plan PNGs and my SVG masterplan are NOT yet at INEX level — that is the remaining work.**
-- **Two mistakes to correct:** (1) I was using the **wrong floor-plan files** (partial `public/floorplans/typeA/B-*.png` crops) — use the real architect drawings instead (see §5). (2) I kept stopping — don't.
+- **Shipped & live:** (a) a full UX/UI overhaul (AA contrast, 44px touch, Phosphor icons, accessible nav/forms, etc.), (b) **Residence Explorer Phase 1** — interactive site plan + tabbed unit panel, (c) **Residence Explorer v2** — INEX-level masterplan (`SitePlan.tsx`) + clean SVG floor plans (`FloorPlan.tsx`). See SIGN-OFF above.
+- **Correction applied:** the WRONG `public/floorplans/typeA/B-*.png` crops are deleted; floor plans are now real-program inline SVG drawn from the architect drawings (see §5).
 
 ---
 
