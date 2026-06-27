@@ -12,7 +12,7 @@
   "heroSub": "十二座现代山坡住宅，地中海阳光与可负担生活的交汇。",
   "heroCta": "浏览住宅",
   "heroCta2": "登记意向",
-  "availLabel": "12 套住宅中可售",
+  "availLabel": "12 套住宅 · 预售于 2026 年 9 月开放",
   "introTitle": "高地生活，稳健价值",
   "introText": "坐落于帕福斯之上宁静的马拉松达村，Terra Something 是十二座由建筑师设计的复式住宅。天然石材、洁白墙面与宽敞玻璃，将地中海日落美景尽收眼底。",
   "sellingTitle": "为何选择 Terra Something",
@@ -104,6 +104,8 @@
     }
   ],
   "timelineTitle": "施工时间表",
+  "timelineDone": "已完成",
+  "timelineUpcoming": "即将进行",
   "timeline": [
     {
       "phase": "设计完成",

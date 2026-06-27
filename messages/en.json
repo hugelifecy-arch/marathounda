@@ -12,7 +12,7 @@
   "heroSub": "Twelve contemporary hillside residences where Mediterranean light meets attainable living.",
   "heroCta": "Explore Residences",
   "heroCta2": "Register Interest",
-  "availLabel": "of 12 residences available",
+  "availLabel": "12 residences · Pre-Sale opens September 2026",
   "introTitle": "Elevated Living, Grounded Value",
   "introText": "Set high above Paphos in the tranquil village of Marathounda, Terra Something is a collection of twelve architect-designed maisonettes. Natural stone, crisp white render and generous glazing frame uninterrupted sunset views across the Mediterranean — all within ten minutes of the city.",
   "sellingTitle": "Why Terra Something",
@@ -104,6 +104,8 @@
     }
   ],
   "timelineTitle": "Construction Timeline",
+  "timelineDone": "Completed",
+  "timelineUpcoming": "Upcoming",
   "timeline": [
     {
       "phase": "Design Completed",

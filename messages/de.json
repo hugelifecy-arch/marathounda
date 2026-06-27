@@ -12,7 +12,7 @@
   "heroSub": "Zwölf moderne Hangresidenzen, wo mediterranes Licht auf erschwingliches Wohnen trifft.",
   "heroCta": "Residenzen erkunden",
   "heroCta2": "Interesse anmelden",
-  "availLabel": "von 12 Residenzen verfügbar",
+  "availLabel": "12 Residenzen · Vorverkauf startet September 2026",
   "introTitle": "Erhobenes Wohnen, solider Wert",
   "introText": "Hoch über Paphos im ruhigen Dorf Marathounda bietet Terra Something eine Sammlung von zwölf architektonisch gestalteten Maisonettes. Naturstein, weißer Putz und großzügige Verglasung rahmen ungehinderten Sonnenuntergang über dem Mittelmeer.",
   "sellingTitle": "Warum Terra Something",
@@ -104,6 +104,8 @@
     }
   ],
   "timelineTitle": "Bauzeitplan",
+  "timelineDone": "Abgeschlossen",
+  "timelineUpcoming": "Bevorstehend",
   "timeline": [
     {
       "phase": "Planung abgeschlossen",

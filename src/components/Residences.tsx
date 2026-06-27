@@ -61,7 +61,7 @@ export default function Residences() {
     <div className="bg-paper py-24 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-4">
-          <span className="text-clay text-sm font-outfit tracking-widest uppercase">02</span>
+          <span className="text-olive text-sm font-outfit tracking-widest uppercase">02</span>
         </div>
         <h2 className="font-fraunces text-4xl md:text-5xl text-ink text-center mb-4">{t('resTitle')}</h2>
         <p className="text-olive text-center mb-12">{t('resSub')}</p>
@@ -127,14 +127,14 @@ export default function Residences() {
               </div>
               <div className="p-6">
                 <h3 className="font-fraunces text-2xl text-ink mb-1">{t('unit')} {unit.id}</h3>
-                <p className="text-clay font-outfit mb-4">{unit.type}</p>
+                <p className="text-accentText font-outfit mb-4">{unit.type}</p>
                 <div className="space-y-2 text-sm font-outfit mb-6">
                   <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('bedrooms')}</span><span className="font-medium">{unit.beds}</span></div>
                   <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('internal')}</span><span className="font-medium">{unit.internal} m²</span></div>
                   <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('verandas')}</span><span className="font-medium">{unit.veranda} m²</span></div>
                   {unit.storage > 0 && <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('storage')}</span><span className="font-medium">{unit.storage} m²</span></div>}
                   <div className="flex justify-between border-b border-line py-1 font-semibold"><span>{t('totalArea')}</span><span>{unit.total} m²</span></div>
-                  <div className="flex justify-between py-1 font-semibold"><span>{t('priceLabel')}</span><span className="text-clay">{priceLabel(unit.price)}</span></div>
+                  <div className="flex justify-between py-1 font-semibold"><span>{t('priceLabel')}</span><span className="text-accentText">{priceLabel(unit.price)}</span></div>
                 </div>
                 <div className={`inline-block px-3 py-1 rounded-full text-xs font-outfit font-semibold ${STATUS_TONE[unit.status].badge}`}>
                   {statusLabel(unit.status)}
@@ -173,7 +173,7 @@ export default function Residences() {
             </div>
 
             <div className="px-6 pb-6">
-              <button onClick={() => enquireAbout(unit.id)} className="block w-full text-center bg-clay hover:bg-clayDark text-paper py-3 px-6 rounded font-outfit font-medium transition-colors">
+              <button onClick={() => enquireAbout(unit.id)} className="block w-full text-center bg-clayDark hover:bg-[#824a2b] active:bg-[#824a2b] text-paper py-3 px-6 rounded font-outfit font-semibold transition-colors">
                 {t('enquireUnit')}
               </button>
             </div>

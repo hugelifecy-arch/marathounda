@@ -60,21 +60,21 @@ export default function Calculator() {
           <div className="bg-darker rounded-xl p-6 flex flex-col justify-center">
             <div className="flex justify-end mb-6 gap-2 flex-wrap">
               {CURRENCIES.map((c) => (
-                <button key={c} onClick={() => setCurrency(c)} className={`text-xs px-2 py-1 rounded font-outfit transition-colors ${c === currency ? 'bg-clay text-paper' : 'text-paper/40 hover:text-paper/80'}`}>{c}</button>
+                <button key={c} onClick={() => setCurrency(c)} aria-pressed={c === currency} className={`text-xs px-3 py-2 min-h-[44px] inline-flex items-center rounded font-outfit transition-colors ${c === currency ? 'bg-clayDark text-paper font-semibold' : 'text-paper/70 hover:text-paper'}`}>{c}</button>
               ))}
             </div>
             <div className="text-center mb-6" aria-live="polite">
               <p className="text-paper/60 text-sm font-outfit mb-2">{t('monthly')}</p>
-              <p className="font-fraunces text-5xl text-gold">{fmt(monthly)}</p>
-              <p className="text-paper/40 text-xs font-outfit mt-2">/mo</p>
+              <p className="font-fraunces text-5xl text-gold tnum">{fmt(monthly)}</p>
+              <p className="text-paper/70 text-xs font-outfit mt-2">/mo</p>
             </div>
             <div className="border-t border-paper/10 pt-4">
               <div className="flex justify-between text-sm font-outfit">
-                <span className="text-paper/60">{t('loanAmount')}</span>
-                <span className="text-paper">{fmt(loan)}</span>
+                <span className="text-paper/70">{t('loanAmount')}</span>
+                <span className="text-paper tnum">{fmt(loan)}</span>
               </div>
             </div>
-            <p className="text-paper/30 text-xs font-outfit mt-6 leading-relaxed">{t('calcNote')}</p>
+            <p className="text-onDarkMuted text-sm font-outfit mt-6 leading-relaxed">{t('calcNote')}</p>
             <a
               href={EUROBANK_CALC_URL}
               target="_blank"

@@ -9,7 +9,7 @@ export default function Location() {
     <div className="bg-paper py-24 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-4">
-          <span className="text-clay text-sm font-outfit tracking-widest uppercase">04</span>
+          <span className="text-olive text-sm font-outfit tracking-widest uppercase">04</span>
         </div>
         <h2 className="font-fraunces text-4xl md:text-5xl text-ink text-center mb-4">{t('locTitle')}</h2>
         <p className="text-olive text-center mb-12">{t('locSub')}</p>
@@ -32,7 +32,7 @@ export default function Location() {
               href="https://www.google.com/maps/dir/?api=1&destination=34.7925,32.4828"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-3 text-clay hover:text-clayDark font-outfit text-sm font-medium"
+              className="inline-flex items-center gap-2 mt-3 text-accentText hover:text-ink underline underline-offset-2 font-outfit text-sm font-medium"
             >
               <span aria-hidden="true">↗</span> {t('directions')}
             </a>
@@ -41,7 +41,7 @@ export default function Location() {
             {distances.map((item, i) => (
               <div key={i} className="flex justify-between items-center py-3 border-b border-line last:border-0">
                 <span className="text-ink font-outfit">{item.p}</span>
-                <span className="text-clay font-outfit font-medium text-sm">{item.d}</span>
+                <span className="text-accentText font-outfit font-medium text-sm tnum">{item.d}</span>
               </div>
             ))}
           </div>
@@ -53,7 +53,8 @@ export default function Location() {
             {timeline.map((step, i) => (
               <div key={i} className="flex-1 relative flex flex-col items-center text-center px-2">
                 <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center mb-3 z-10 ${step.done ? 'bg-sage border-sage text-paper' : 'bg-paper border-line text-olive'}`}>
-                  {step.done ? '✓' : <span className="text-xs">{i + 1}</span>}
+                  <span className="sr-only">{step.done ? `${t('timelineDone')}: ` : `${t('timelineUpcoming')}: `}</span>
+                  <span aria-hidden="true">{step.done ? '✓' : <span className="text-xs">{i + 1}</span>}</span>
                 </div>
                 {i < timeline.length - 1 && <div className="absolute top-4 left-1/2 w-full h-0.5 bg-line hidden md:block" />}
                 <p className="font-outfit font-semibold text-sm text-ink">{step.phase}</p>

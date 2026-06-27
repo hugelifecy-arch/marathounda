@@ -38,13 +38,13 @@ export default function EnquiryForm() {
     <div className="bg-limestone py-24 px-4">
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-4">
-          <span className="text-clay text-sm font-outfit tracking-widest uppercase">06</span>
+          <span className="text-olive text-sm font-outfit tracking-widest uppercase">06</span>
         </div>
         <h2 className="font-fraunces text-4xl md:text-5xl text-ink text-center mb-4">{t('enquireTitle')}</h2>
         <p className="text-olive text-center mb-12">{t('enquireSub')}</p>
 
         {status === 'sent' ? (
-          <div role="status" className="bg-sage/20 border border-sage text-sage p-6 rounded-lg text-center font-outfit">
+          <div role="status" className="bg-sage/20 border border-sage text-ink p-6 rounded-lg text-center font-outfit">
             {t('thankYou')}
           </div>
         ) : (
@@ -58,13 +58,13 @@ export default function EnquiryForm() {
             ].map(({ name, label, type, autoComplete }) => (
               <div key={name}>
                 <label htmlFor={`enq-${name}`} className="block text-sm font-outfit text-olive mb-1">{label}</label>
-                <input id={`enq-${name}`} name={name} type={type} required autoComplete={autoComplete} className="w-full border border-line rounded px-3 py-2 font-outfit text-ink bg-limestone focus:outline-none focus:border-clay transition-colors" />
+                <input id={`enq-${name}`} name={name} type={type} required autoComplete={autoComplete} className="w-full border border-line rounded px-3 py-3 font-outfit text-ink bg-paper focus:border-clay focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-1 transition-colors" />
               </div>
             ))}
 
             <div>
               <label htmlFor="enq-interest" className="block text-sm font-outfit text-olive mb-1">{t('interest')}</label>
-              <select id="enq-interest" name="interest" value={interest} onChange={(e) => setInterest(e.target.value)} className="w-full border border-line rounded px-3 py-2 font-outfit text-ink bg-limestone focus:outline-none focus:border-clay">
+              <select id="enq-interest" name="interest" value={interest} onChange={(e) => setInterest(e.target.value)} className="w-full border border-line rounded px-3 py-3 font-outfit text-ink bg-paper focus:border-clay focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-1">
                 <option value="">{t('anyUnit')}</option>
                 {UNITS.map((u) => (
                   <option key={u.id} value={u.id}>{t('unit')} {u.id} — {u.type} ({u.total} m²)</option>
@@ -74,7 +74,7 @@ export default function EnquiryForm() {
 
             <div>
               <label htmlFor="enq-message" className="block text-sm font-outfit text-olive mb-1">{t('message')}</label>
-              <textarea id="enq-message" name="message" rows={4} className="w-full border border-line rounded px-3 py-2 font-outfit text-ink bg-limestone focus:outline-none focus:border-clay transition-colors resize-none" />
+              <textarea id="enq-message" name="message" rows={4} className="w-full border border-line rounded px-3 py-3 font-outfit text-ink bg-paper focus:border-clay focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-1 transition-colors resize-none" />
             </div>
 
             <div>
@@ -86,14 +86,14 @@ export default function EnquiryForm() {
                   checked={consent}
                   onChange={(e) => { setConsent(e.target.checked); if (e.target.checked) setConsentError(false); }}
                   aria-invalid={consentError}
-                  className="mt-1 accent-clay"
+                  className="mt-0.5 h-5 w-5 accent-clay"
                 />
                 <span>{t('consent')}</span>
               </label>
               {consentError && <p role="alert" className="text-red-600 text-sm mt-1 font-outfit">{t('consentRequired')}</p>}
             </div>
 
-            <button type="submit" disabled={status === 'sending'} className="w-full bg-clay hover:bg-clayDark text-paper py-3 rounded font-outfit font-medium transition-colors disabled:opacity-60">
+            <button type="submit" disabled={status === 'sending'} className="w-full bg-clayDark hover:bg-[#824a2b] active:bg-[#824a2b] text-paper py-3 rounded font-outfit font-semibold transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
               {status === 'sending' ? t('sending') : t('send')}
             </button>
             <p role="alert" aria-live="assertive" className="text-red-600 text-sm text-center font-outfit">{status === 'error' ? t('formError') : ''}</p>

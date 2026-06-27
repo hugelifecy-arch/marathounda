@@ -8,7 +8,7 @@ export default function SellingPoints() {
     <div className="bg-limestone py-24 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-4">
-          <span className="text-clay text-sm font-outfit tracking-widest uppercase">01</span>
+          <span className="text-olive text-sm font-outfit tracking-widest uppercase">01</span>
         </div>
         <h2 className="font-fraunces text-4xl md:text-5xl text-ink text-center mb-4">{t('introTitle')}</h2>
         <p className="text-olive text-center max-w-3xl mx-auto mb-16 font-outfit leading-relaxed">{t('introText')}</p>
