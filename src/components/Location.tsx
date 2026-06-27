@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function Location() {
   const t = useTranslations();
@@ -34,7 +35,7 @@ export default function Location() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 mt-3 text-accentText hover:text-ink underline underline-offset-2 font-outfit text-sm font-medium"
             >
-              <span aria-hidden="true">↗</span> {t('directions')}
+              <ArrowUpRight className="w-4 h-4" aria-hidden="true" /> {t('directions')}
             </a>
           </div>
           <div className="space-y-3">

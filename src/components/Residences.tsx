@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { X } from 'lucide-react';
 import { UNITS, PLANS, type Price, type UnitStatus } from '@/data/units';
 import { useCurrency } from '@/components/CurrencyProvider';
 import { useFocusTrap } from '@/components/useFocusTrap';
@@ -196,7 +197,7 @@ export default function Residences() {
             <div className="relative w-full max-w-5xl max-h-full" onClick={(e) => e.stopPropagation()}>
               <Image src={lightbox} alt={t('floorPlans')} width={1600} height={1100} className="w-full h-auto object-contain max-h-[85vh]" />
             </div>
-            <button onClick={() => setLightbox(null)} aria-label={t('close')} className="absolute top-4 end-4 text-paper text-3xl p-3 min-w-[44px] min-h-[44px] inline-flex items-center justify-center hover:text-gold active:text-gold transition-colors">&#x2715;</button>
+            <button onClick={() => setLightbox(null)} aria-label={t('close')} className="absolute top-4 end-4 text-paper p-3 min-w-[44px] min-h-[44px] inline-flex items-center justify-center hover:text-gold active:text-gold transition-colors"><X className="w-6 h-6" aria-hidden="true" /></button>
           </div>
         )}
       </div>

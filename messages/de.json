@@ -18,32 +18,26 @@
   "sellingTitle": "Warum Terra Something",
   "selling": [
     {
-      "icon": "🏛️",
       "t": "5% MwSt.",
       "d": "Berechtigt zum ermäßigten MwSt.-Satz von 5% für Erstwohnsitze nach Gesetz 42(I)/2023."
     },
     {
-      "icon": "🌾",
       "t": "Ländliche Förderung",
       "d": "Käufer können für staatliche Wohnbeihilfen in ländlichen Gebieten berechtigt sein."
     },
     {
-      "icon": "📜",
       "t": "Eigene Grundbucheinträge",
       "d": "Jede Residenz wird mit eigenem unabhängigem Grundbucheintrag geliefert."
     },
     {
-      "icon": "🌅",
       "t": "Meeresblick bei Sonnenuntergang",
       "d": "Erhöhte Lage 300m+ mit Panoramablick auf die Küste."
     },
     {
-      "icon": "🏗️",
       "t": "Stein & Licht",
       "d": "Natursteinverkleidung, weißer Putz, Holzakzente — gebaut um zu dauern."
     },
     {
-      "icon": "🚗",
       "t": "Eigener Parkplatz",
       "d": "Eigener Parkplatz für jede Residenz plus Besucherstellplätze."
     }
@@ -190,5 +184,7 @@
   "optional": "optional",
   "errRequired": "Dieses Feld ist erforderlich",
   "errEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
-  "reserveNote": "Reservierung: 30% Anzahlung und unterzeichneter Vertrag, danach gestaffelte Zahlungen."
+  "reserveNote": "Reservierung: 30% Anzahlung und unterzeichneter Vertrag, danach gestaffelte Zahlungen.",
+  "previousImage": "Vorheriges Bild",
+  "nextImage": "Nächstes Bild"
 }

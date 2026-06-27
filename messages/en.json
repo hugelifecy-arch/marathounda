@@ -18,32 +18,26 @@
   "sellingTitle": "Why Terra Something",
   "selling": [
     {
-      "icon": "🏛️",
       "t": "5% VAT Eligible",
       "d": "Qualifies for the reduced 5% VAT rate on primary residences under Law 42(I)/2023."
     },
     {
-      "icon": "🌾",
       "t": "Rural Grant",
       "d": "Buyers may be eligible for government housing grants available in rural areas."
     },
     {
-      "icon": "📜",
       "t": "Separate Title Deeds",
       "d": "Each residence is delivered with its own independent title deed."
     },
     {
-      "icon": "🌅",
       "t": "Sunset Sea Views",
       "d": "Elevated 300m+ position with panoramic western views over the coast."
     },
     {
-      "icon": "🏗️",
       "t": "Stone & Light",
       "d": "Natural stone cladding, white render, timber accents — built to last."
     },
     {
-      "icon": "🚗",
       "t": "Private Parking",
       "d": "Dedicated parking for every residence plus visitor spaces."
     }
@@ -190,5 +184,7 @@
   "optional": "optional",
   "errRequired": "This field is required",
   "errEmail": "Please enter a valid email address",
-  "reserveNote": "Reservation: 30% deposit and a signed contract, with staged payments thereafter."
+  "reserveNote": "Reservation: 30% deposit and a signed contract, with staged payments thereafter.",
+  "previousImage": "Previous image",
+  "nextImage": "Next image"
 }
