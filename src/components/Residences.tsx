@@ -8,11 +8,14 @@ import { useFocusTrap } from '@/components/useFocusTrap';
 
 type BedFilter = 'all' | 2 | 3;
 
-// Per-status colour tokens used by both the picker grid and the detail badge.
+// Per-status tokens for the picker grid + detail badge. Hierarchy is tuned for
+// conversion: AVAILABLE is the most prominent (strong fill, solid border),
+// reserved/sold are muted. Status is also conveyed without colour — reserved
+// uses a DASHED border and sold a line-through — to satisfy WCAG 1.4.1.
 const STATUS_TONE: Record<UnitStatus, { sel: string; idle: string; badge: string }> = {
-  available: { sel: 'bg-sage text-paper border-sage', idle: 'bg-sage/20 text-sage border-sage hover:bg-sage/40', badge: 'bg-sage/20 text-sage' },
-  reserved: { sel: 'bg-clay text-paper border-clay', idle: 'bg-clay/20 text-clay border-clay hover:bg-clay/40', badge: 'bg-clay/20 text-clay' },
-  sold: { sel: 'bg-olive text-paper border-olive', idle: 'bg-olive/15 text-olive border-olive/60 hover:bg-olive/25', badge: 'bg-olive/15 text-olive' },
+  available: { sel: 'bg-sage text-ink border-sage', idle: 'bg-sage/35 text-ink border-2 border-sage hover:bg-sage/55', badge: 'bg-sage/30 text-ink' },
+  reserved: { sel: 'bg-clay text-paper border-2 border-dashed border-clay', idle: 'bg-limestone text-olive border-2 border-dashed border-clay/70 hover:bg-clay/10', badge: 'bg-clay/15 text-accentText' },
+  sold: { sel: 'bg-olive text-paper border-olive', idle: 'bg-paper text-olive/70 border-2 border-line hover:bg-line/30', badge: 'bg-olive/15 text-olive' },
 };
 
 export default function Residences() {
@@ -35,15 +38,23 @@ export default function Residences() {
   const statusLabel = (s: UnitStatus) => (s === 'available' ? t('available') : s === 'reserved' ? t('reserved') : t('sold'));
   const priceLabel = (p: Price) => (p === 'POA' ? t('poa') : format(p));
 
+  // Smooth-scroll an element to just below the sticky 4rem header. (Native
+  // scrollIntoView ignores scroll-padding-top, so headings get clipped.)
+  const scrollToWithOffset = (el: HTMLElement | null) => {
+    if (!el) return;
+    const y = el.getBoundingClientRect().top + window.scrollY - 72;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  };
+
   // Carry the chosen residence to the enquiry form, then scroll to it.
   const enquireAbout = (id: number) => {
     window.dispatchEvent(new CustomEvent('enquiry:prefill', { detail: id }));
-    document.getElementById('enquire')?.scrollIntoView({ behavior: 'smooth' });
+    scrollToWithOffset(document.getElementById('enquire'));
   };
 
   // Bring the detail panel into view when a residence is selected.
   useEffect(() => {
-    if (selected !== null) panelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    if (selected !== null) scrollToWithOffset(panelRef.current);
   }, [selected]);
 
   useEffect(() => {
@@ -98,7 +109,7 @@ export default function Residences() {
                 aria-label={`${t('unit')} ${u.id}, ${u.beds === 3 ? t('threeBed') : t('twoBed')}, ${statusLabel(u.status)}`}
                 className={`aspect-square rounded-lg border-2 flex flex-col items-center justify-center text-sm font-outfit font-semibold transition-all ${
                   selected === u.id ? STATUS_TONE[u.status].sel : STATUS_TONE[u.status].idle
-                } ${u.beds === 3 ? 'ring-2 ring-offset-1 ring-ink/30' : ''} ${u.status === 'sold' ? 'line-through' : ''}`}
+                } ${u.beds === 3 ? 'ring-1 ring-ink/25' : ''} ${u.status === 'sold' ? 'line-through' : ''}`}
               >
                 <span className="text-lg">{u.id}</span>
                 <span className="text-xs opacity-75">{u.beds}bd</span>
@@ -108,10 +119,10 @@ export default function Residences() {
         )}
 
         <div className="flex flex-wrap gap-4 justify-center mb-12 text-sm font-outfit">
-          <span className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-sage inline-block" />{t('available')}</span>
-          <span className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-clay inline-block" />{t('reserved')}</span>
-          <span className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-olive inline-block" />{t('sold')}</span>
-          <span className="flex items-center gap-2"><span className="w-3 h-3 rounded border-2 border-ink/30 inline-block" />{t('threeBed')}</span>
+          <span className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded bg-sage border-2 border-sage inline-block" />{t('available')}</span>
+          <span className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded bg-limestone border-2 border-dashed border-clay inline-block" />{t('reserved')}</span>
+          <span className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded bg-olive inline-block line-through" />{t('sold')}</span>
+          <span className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded ring-1 ring-ink/30 inline-block" />{t('threeBed')}</span>
         </div>
 
         {unit && (
@@ -149,8 +160,8 @@ export default function Residences() {
                   <button
                     key={f}
                     onClick={() => setFloor(f)}
-                    className={`px-4 py-2 rounded font-medium transition-colors ${
-                      floor === f ? 'bg-clay text-paper' : 'bg-paper text-olive border border-line hover:bg-line/40'
+                    className={`px-4 py-3 rounded font-medium transition-colors active:opacity-75 ${
+                      floor === f ? 'bg-clayDark text-paper' : 'bg-paper text-olive border border-line hover:bg-line/40'
                     }`}
                   >
                     {f === 'ground' ? t('groundFloor') : t('firstFloor')}
@@ -185,7 +196,7 @@ export default function Residences() {
             <div className="relative w-full max-w-5xl max-h-full" onClick={(e) => e.stopPropagation()}>
               <Image src={lightbox} alt={t('floorPlans')} width={1600} height={1100} className="w-full h-auto object-contain max-h-[85vh]" />
             </div>
-            <button onClick={() => setLightbox(null)} aria-label="Close" className="absolute top-4 end-4 text-paper text-3xl hover:text-gold transition-colors">&#x2715;</button>
+            <button onClick={() => setLightbox(null)} aria-label={t('close')} className="absolute top-4 end-4 text-paper text-3xl p-3 min-w-[44px] min-h-[44px] inline-flex items-center justify-center hover:text-gold active:text-gold transition-colors">&#x2715;</button>
           </div>
         )}
       </div>
