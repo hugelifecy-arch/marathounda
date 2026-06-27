@@ -6,7 +6,7 @@ import { X } from '@phosphor-icons/react';
 import { UNITS, type Price, type UnitStatus } from '@/data/units';
 import { useCurrency } from '@/components/CurrencyProvider';
 import { useFocusTrap } from '@/components/useFocusTrap';
-import SitePlan from '@/components/SitePlan';
+import Masterplan from '@/components/Masterplan';
 import FloorPlan, { type FloorPlanLabels } from '@/components/FloorPlan';
 import { SPECIFICATION, RESERVE_STEPS } from '@/data/residenceContent';
 
@@ -120,19 +120,15 @@ export default function Residences() {
         {visible.length === 0 && (
           <p className="text-olive text-center mb-4 font-outfit">{t('noMatch')}</p>
         )}
-        <div className="max-w-3xl mx-auto mb-4 rounded-xl border border-line bg-limestone/50 p-4 sm:p-6">
-          <SitePlan
-            units={visible}
+        <div className="mb-12">
+          <Masterplan
+            visibleIds={new Set(visible.map((u) => u.id))}
             selected={selected}
             onSelect={(id) => { setSelected(selected === id ? null : id); setFloor('ground'); setTab('overview'); }}
             statusLabel={statusLabel}
-            unitLabel={t('unit')}
-            twoBed={t('twoBed')}
-            threeBed={t('threeBed')}
-            availabilityLabel={t('availability')}
+            labels={{ prompt: t('selectResidence'), unit: t('unit'), beds2: t('twoBed'), beds3: t('threeBed'), available: t('available'), reserved: t('reserved') }}
           />
         </div>
-        <p className="text-center text-xs text-olive italic mb-12 font-outfit">{t('sitePlanNote')}</p>
 
         {unit && (
           <div ref={panelRef} className="bg-limestone border border-line rounded-xl overflow-hidden max-w-4xl mx-auto scroll-mt-24">
