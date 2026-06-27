@@ -149,7 +149,7 @@
     }
   ],
   "enquireTitle": "登记意向",
-  "enquireSub": "价格面议。支付30%定金并签署合同，之后分阶段付款。",
+  "enquireSub": "登记您的兴趣，以便在 2026 年 9 月预售开放时获取价格、户型图及优先权。",
   "name": "全名",
   "email": "电子邮件",
   "phone": "电话",
@@ -185,5 +185,10 @@
   "whatsappLabel": "通过 WhatsApp 联系我们",
   "openMenu": "打开菜单",
   "closeMenu": "关闭菜单",
-  "close": "关闭"
+  "close": "关闭",
+  "requiredField": "必填",
+  "optional": "选填",
+  "errRequired": "此字段为必填项",
+  "errEmail": "请输入有效的电子邮件地址",
+  "reserveNote": "预订：30% 定金及签署合同，其后分阶段付款。"
 }

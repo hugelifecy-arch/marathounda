@@ -149,7 +149,7 @@
     }
   ],
   "enquireTitle": "Interesse anmelden",
-  "enquireSub": "Preis auf Anfrage. Reservierung mit 30% und unterzeichnetem Vertrag, danach Ratenzahlungen.",
+  "enquireSub": "Bekunden Sie Ihr Interesse, um Preise, Grundrisse und bevorzugten Zugang zum Vorverkaufsstart im September 2026 zu erhalten.",
   "name": "Vollständiger Name",
   "email": "E-Mail",
   "phone": "Telefon",
@@ -185,5 +185,10 @@
   "whatsappLabel": "Kontakt über WhatsApp",
   "openMenu": "Menü öffnen",
   "closeMenu": "Menü schließen",
-  "close": "Schließen"
+  "close": "Schließen",
+  "requiredField": "erforderlich",
+  "optional": "optional",
+  "errRequired": "Dieses Feld ist erforderlich",
+  "errEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+  "reserveNote": "Reservierung: 30% Anzahlung und unterzeichneter Vertrag, danach gestaffelte Zahlungen."
 }

@@ -24,7 +24,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false, error: 'consent' }, { status: 400 });
     }
 
-    if (!name || !email || !phone || !isEmail(String(email)) || tooLong(name, email, phone, message) || !validInterest(interest)) {
+    // Phone is optional; name + a valid email are required.
+    if (!name || !email || !isEmail(String(email)) || tooLong(name, email, phone, message) || !validInterest(interest)) {
       return NextResponse.json({ ok: false, error: 'invalid' }, { status: 400 });
     }
 

@@ -149,7 +149,7 @@
     }
   ],
   "enquireTitle": "Register Your Interest",
-  "enquireSub": "Pricing on request. Reserve with 30% and a signed contract, with staged payments thereafter.",
+  "enquireSub": "Register your interest to receive pricing, floor plans and priority access when Pre-Sale opens in September 2026.",
   "name": "Full Name",
   "email": "Email",
   "phone": "Phone",
@@ -185,5 +185,10 @@
   "whatsappLabel": "Contact us on WhatsApp",
   "openMenu": "Open menu",
   "closeMenu": "Close menu",
-  "close": "Close"
+  "close": "Close",
+  "requiredField": "required",
+  "optional": "optional",
+  "errRequired": "This field is required",
+  "errEmail": "Please enter a valid email address",
+  "reserveNote": "Reservation: 30% deposit and a signed contract, with staged payments thereafter."
 }
