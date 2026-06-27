@@ -159,7 +159,7 @@
   "sending": "Sending…",
   "anyUnit": "Any / Not sure yet",
   "footerNote": "Reservations require a 30% deposit and signed contract. Communal fees apply. Images are artist's impressions. Specifications available on request.",
-  "poweredBy": "Powered by",
+  "poweredBy": "Project Finance",
   "thankYou": "Thank you! We'll be in touch shortly.",
   "formError": "Something went wrong. Please try again.",
   "contactPhone": "Phone",
@@ -181,5 +181,8 @@
   "noMatch": "No residences match these filters.",
   "consent": "I consent to Terra Something storing my details to respond to this enquiry.",
   "consentRequired": "Please confirm your consent to continue.",
-  "directions": "Get directions"
+  "directions": "Get directions",
+  "whatsappLabel": "Contact us on WhatsApp",
+  "openMenu": "Open menu",
+  "closeMenu": "Close menu"
 }

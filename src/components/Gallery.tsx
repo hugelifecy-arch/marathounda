@@ -61,7 +61,7 @@ export default function Gallery() {
       </div>
 
       {lightbox !== null && (
-        <div ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('galleryTitle')} className="fixed inset-0 bg-ink/95 z-50 flex items-center justify-center outline-none" onClick={close}>
+        <div ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('galleryTitle')} className="fixed inset-0 bg-ink/95 z-[60] flex items-center justify-center outline-none" onClick={close}>
           <div className="relative w-full max-w-5xl max-h-full p-4" onClick={(e) => e.stopPropagation()}>
             <div className="relative aspect-video">
               <Image src={`/renders/render-${GALLERY_KEYS[lightbox]}.jpg`} alt={`Terra Something — Marathounda residence exterior render ${lightbox + 1}`} fill className="object-contain" />

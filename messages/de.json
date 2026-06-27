@@ -159,7 +159,7 @@
   "sending": "Senden…",
   "anyUnit": "Beliebig / Noch nicht sicher",
   "footerNote": "Reservierungen erfordern 30% Anzahlung und unterzeichneten Vertrag. Gemeinschaftsgebühren anfallend. Bilder sind Künstlerimpressionen.",
-  "poweredBy": "Unterstützt von",
+  "poweredBy": "Projektfinanzierung",
   "thankYou": "Vielen Dank! Wir melden uns in Kürze bei Ihnen.",
   "formError": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
   "contactPhone": "Telefon",
@@ -181,5 +181,8 @@
   "noMatch": "Keine Residenzen entsprechen diesen Filtern.",
   "consent": "Ich willige ein, dass Terra Something meine Daten zur Beantwortung dieser Anfrage speichert.",
   "consentRequired": "Bitte bestätigen Sie Ihre Einwilligung, um fortzufahren.",
-  "directions": "Route planen"
+  "directions": "Route planen",
+  "whatsappLabel": "Kontakt über WhatsApp",
+  "openMenu": "Menü öffnen",
+  "closeMenu": "Menü schließen"
 }

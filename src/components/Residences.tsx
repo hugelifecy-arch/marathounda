@@ -181,7 +181,7 @@ export default function Residences() {
         )}
 
         {lightbox && (
-          <div ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('floorPlans')} className="fixed inset-0 bg-ink/95 z-50 flex items-center justify-center p-4 outline-none" onClick={() => setLightbox(null)}>
+          <div ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('floorPlans')} className="fixed inset-0 bg-ink/95 z-[60] flex items-center justify-center p-4 outline-none" onClick={() => setLightbox(null)}>
             <div className="relative w-full max-w-5xl max-h-full" onClick={(e) => e.stopPropagation()}>
               <Image src={lightbox} alt={t('floorPlans')} width={1600} height={1100} className="w-full h-auto object-contain max-h-[85vh]" />
             </div>

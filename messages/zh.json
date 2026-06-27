@@ -159,7 +159,7 @@
   "sending": "发送中…",
   "anyUnit": "任意 / 尚未决定",
   "footerNote": "预订需支付30%定金并签署合同。适用公共费用。图片为艺术效果图。",
-  "poweredBy": "技术支持",
+  "poweredBy": "项目融资",
   "thankYou": "谢谢！我们将尽快与您联系。",
   "formError": "出现错误，请重试。",
   "contactPhone": "电话",
@@ -181,5 +181,8 @@
   "noMatch": "没有符合这些筛选条件的住宅。",
   "consent": "我同意 Terra Something 存储我的信息以回复此询问。",
   "consentRequired": "请确认您的同意以继续。",
-  "directions": "获取路线"
+  "directions": "获取路线",
+  "whatsappLabel": "通过 WhatsApp 联系我们",
+  "openMenu": "打开菜单",
+  "closeMenu": "关闭菜单"
 }

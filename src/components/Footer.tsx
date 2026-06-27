@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import Logo from '@/components/Logo';
 
 export default function Footer() {
   const t = useTranslations();
@@ -7,17 +8,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <svg width="34" height="34" viewBox="0 0 40 40">
-                <rect x="2" y="2" width="36" height="36" rx="8" fill="none" stroke="#B5764D" strokeWidth="1.5" />
-                <path d="M8 26 L14 18 L20 24 L26 14 L32 26 Z" fill="#B5764D" opacity="0.85" />
-                <circle cx="28" cy="11" r="3" fill="#B5764D" />
-                <line x1="8" y1="29" x2="32" y2="29" stroke="#F4F1EA" strokeWidth="1.5" />
-              </svg>
-              <div style={{ lineHeight: 1 }}>
-                <div className="font-fraunces text-lg font-semibold text-paper" style={{ letterSpacing: 0.5 }}>TERRA</div>
-                <div className="text-clay font-medium" style={{ fontSize: 9, letterSpacing: 4, marginTop: 1 }}>SOMETHING</div>
-              </div>
+            <div className="mb-3">
+              <Logo variant="onDark" />
             </div>
             <p className="text-sm font-outfit leading-relaxed">{t('address')}</p>
           </div>
