@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { CaretLeft, CaretRight, X } from '@phosphor-icons/react';
 import { useFocusTrap } from '@/components/useFocusTrap';
 
 const GALLERY_KEYS = ['01','02','03','04','05','06','07','08','09','10','11','12'];
@@ -68,12 +68,12 @@ export default function Gallery() {
               <Image src={`/renders/render-${GALLERY_KEYS[lightbox]}.jpg`} alt={`Terra Something — Marathounda residence exterior render ${lightbox + 1}`} fill className="object-contain" />
             </div>
             <div className="flex items-center justify-between mt-4">
-              <button onClick={prev} aria-label={t('previousImage')} className="text-paper px-4 py-3 hover:text-gold active:text-gold transition-colors"><ChevronLeft className="w-7 h-7" aria-hidden="true" /></button>
+              <button onClick={prev} aria-label={t('previousImage')} className="text-paper px-4 py-3 hover:text-gold active:text-gold transition-colors"><CaretLeft size={28} aria-hidden="true" /></button>
               <span aria-live="polite" aria-atomic="true" className="text-paper/70 text-sm font-outfit tnum">{lightbox + 1} / {GALLERY_KEYS.length}</span>
-              <button onClick={next} aria-label={t('nextImage')} className="text-paper px-4 py-3 hover:text-gold active:text-gold transition-colors"><ChevronRight className="w-7 h-7" aria-hidden="true" /></button>
+              <button onClick={next} aria-label={t('nextImage')} className="text-paper px-4 py-3 hover:text-gold active:text-gold transition-colors"><CaretRight size={28} aria-hidden="true" /></button>
             </div>
           </div>
-          <button onClick={close} aria-label={t('close')} className="absolute top-4 end-4 text-paper p-3 min-w-[44px] min-h-[44px] inline-flex items-center justify-center hover:text-gold active:text-gold transition-colors"><X className="w-6 h-6" aria-hidden="true" /></button>
+          <button onClick={close} aria-label={t('close')} className="absolute top-4 end-4 text-paper p-3 min-w-[44px] min-h-[44px] inline-flex items-center justify-center hover:text-gold active:text-gold transition-colors"><X size={24} aria-hidden="true" /></button>
         </div>
       )}
     </div>

@@ -1,3 +1,4 @@
+'use client';
 import { useTranslations } from 'next-intl';
 import { SELLING_ICONS } from '@/data/sellingPoints';
 
@@ -20,7 +21,7 @@ export default function SellingPoints() {
             const Icon = SELLING_ICONS[i];
             return (
               <div key={i} className="bg-paper border border-line rounded-lg p-6">
-                {Icon && <Icon className="w-7 h-7 mb-3 text-accentText" strokeWidth={1.5} aria-hidden="true" />}
+                {Icon && <Icon className="mb-3 text-accentText" size={28} weight="regular" aria-hidden="true" />}
                 <h4 className="font-fraunces text-lg text-ink mb-2">{item.t}</h4>
                 <p className="text-olive text-sm font-outfit leading-relaxed">{item.d}</p>
               </div>

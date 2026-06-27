@@ -1,5 +1,6 @@
+'use client';
 import { useTranslations } from 'next-intl';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from '@phosphor-icons/react';
 
 export default function Location() {
   const t = useTranslations();
@@ -35,7 +36,7 @@ export default function Location() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 mt-3 text-accentText hover:text-ink underline underline-offset-2 font-outfit text-sm font-medium"
             >
-              <ArrowUpRight className="w-4 h-4" aria-hidden="true" /> {t('directions')}
+              <ArrowUpRight size={16} aria-hidden="true" /> {t('directions')}
             </a>
           </div>
           <div className="space-y-3">

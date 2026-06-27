@@ -1,7 +1,7 @@
 'use client';
 import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
-import { ExternalLink } from 'lucide-react';
+import { ArrowSquareOut } from '@phosphor-icons/react';
 import { useCurrency, CURRENCIES } from '@/components/CurrencyProvider';
 
 // Eurobank Cyprus Bank Housing Base Rate (BHBR) = Euribor 3M + 1.50% spread.
@@ -82,7 +82,7 @@ export default function Calculator() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 mt-4 text-gold text-xs font-outfit underline underline-offset-2 hover:text-paper transition-colors"
             >
-              {t('eurobankLink')} <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+              {t('eurobankLink')} <ArrowSquareOut size={14} aria-hidden="true" />
             </a>
           </div>
         </div>
