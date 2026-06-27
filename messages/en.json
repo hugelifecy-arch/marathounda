@@ -195,5 +195,19 @@
   "specCaption": "Indicative specification — the final materials & finishes schedule is provided with the contract.",
   "reserveCaption": "Indicative process — exact terms are confirmed in your reservation agreement and purchase contract.",
   "estimateThis": "Estimate this home",
-  "availability": "Availability"
+  "availability": "Availability",
+  "fpLiving": "Living · Dining · Kitchen",
+  "fpHall": "Entrance",
+  "fpWc": "Guest WC",
+  "fpStair": "Stairs",
+  "fpLanding": "Landing",
+  "fpBath": "Bathroom",
+  "fpEnsuite": "En-suite",
+  "fpMaster": "Master Bedroom",
+  "fpBed2": "Bedroom 2",
+  "fpBed3": "Bedroom 3",
+  "fpWardrobe": "Wardrobe",
+  "fpVeranda": "Veranda",
+  "fpIndicative": "Indicative layout — not to scale",
+  "fpNorth": "N"
 }

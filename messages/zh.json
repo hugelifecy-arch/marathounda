@@ -195,5 +195,19 @@
   "specCaption": "示意性规格——最终的材料与饰面清单将随合同提供。",
   "reserveCaption": "示意性流程——确切条款以预订协议及购房合同为准。",
   "estimateThis": "估算此住宅",
-  "availability": "可售情况"
+  "availability": "可售情况",
+  "fpLiving": "客厅 · 餐厅 · 厨房",
+  "fpHall": "入口",
+  "fpWc": "客用卫生间",
+  "fpStair": "楼梯",
+  "fpLanding": "走廊",
+  "fpBath": "浴室",
+  "fpEnsuite": "套内卫浴",
+  "fpMaster": "主卧",
+  "fpBed2": "卧室 2",
+  "fpBed3": "卧室 3",
+  "fpWardrobe": "衣帽间",
+  "fpVeranda": "阳台",
+  "fpIndicative": "示意布局 — 非按比例",
+  "fpNorth": "北"
 }

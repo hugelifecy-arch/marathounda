@@ -195,5 +195,19 @@
   "specCaption": "Indikative Spezifikation — die endgültige Material- & Ausstattungsliste wird mit dem Vertrag bereitgestellt.",
   "reserveCaption": "Indikativer Ablauf — genaue Bedingungen werden in Reservierungsvereinbarung und Kaufvertrag bestätigt.",
   "estimateThis": "Diese Wohnung berechnen",
-  "availability": "Verfügbarkeit"
+  "availability": "Verfügbarkeit",
+  "fpLiving": "Wohnen · Essen · Küche",
+  "fpHall": "Eingang",
+  "fpWc": "Gäste-WC",
+  "fpStair": "Treppe",
+  "fpLanding": "Flur",
+  "fpBath": "Bad",
+  "fpEnsuite": "En-suite-Bad",
+  "fpMaster": "Hauptschlafzimmer",
+  "fpBed2": "Schlafzimmer 2",
+  "fpBed3": "Schlafzimmer 3",
+  "fpWardrobe": "Ankleide",
+  "fpVeranda": "Veranda",
+  "fpIndicative": "Indikativer Grundriss — nicht maßstabsgetreu",
+  "fpNorth": "N"
 }

@@ -40,9 +40,5 @@ export const UNITS: Unit[] = [
   { id: 12, renderKey: '12', type: '3-Bed End Maisonette', planType: 'A', beds: 3, gf: 60.72, ff: 64.91, internal: 125.63, veranda: 9.40,  storage: 0,    total: 134.03, price: 'POA', status: 'available', level: 'upper' },
 ];
 
-// Floor-plan images are shared by architectural type. Replace a file in
-// /public/floorplans/ (same filename) to update the site with no code change.
-export const PLANS: Record<PlanType, { ground: string; first: string }> = {
-  A: { ground: '/floorplans/typeA-3bed-ground.png', first: '/floorplans/typeA-3bed-first.png' },
-  B: { ground: '/floorplans/typeB-2bed-ground.png', first: '/floorplans/typeB-2bed-first.png' },
-};
+// Floor plans are rendered as clean inline-SVG presentation drawings —
+// see src/components/FloorPlan.tsx (keyed by planType + level).
