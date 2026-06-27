@@ -121,16 +121,10 @@ export default function Residences() {
             unitLabel={t('unit')}
             twoBed={t('twoBed')}
             threeBed={t('threeBed')}
+            availabilityLabel={t('availability')}
           />
         </div>
-        <p className="text-center text-xs text-olive italic mb-8 font-outfit">{t('sitePlanNote')}</p>
-
-        <div className="flex flex-wrap gap-4 justify-center mb-12 text-sm font-outfit">
-          <span className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded bg-sage border-2 border-sage inline-block" />{t('available')}</span>
-          <span className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded bg-limestone border-2 border-dashed border-clay inline-block" />{t('reserved')}</span>
-          <span className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded bg-olive inline-block line-through" />{t('sold')}</span>
-          <span className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded ring-1 ring-ink/30 inline-block" />{t('threeBed')}</span>
-        </div>
+        <p className="text-center text-xs text-olive italic mb-12 font-outfit">{t('sitePlanNote')}</p>
 
         {unit && (
           <div ref={panelRef} className="bg-limestone border border-line rounded-xl overflow-hidden max-w-4xl mx-auto scroll-mt-24">
