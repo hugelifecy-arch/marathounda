@@ -3,10 +3,11 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { X } from '@phosphor-icons/react';
-import { UNITS, PLANS, type Price, type UnitStatus } from '@/data/units';
+import { UNITS, type Price, type UnitStatus } from '@/data/units';
 import { useCurrency } from '@/components/CurrencyProvider';
 import { useFocusTrap } from '@/components/useFocusTrap';
 import SitePlan from '@/components/SitePlan';
+import FloorPlan, { type FloorPlanLabels } from '@/components/FloorPlan';
 import { SPECIFICATION, RESERVE_STEPS } from '@/data/residenceContent';
 
 type PanelTab = 'overview' | 'plans' | 'spec' | 'reserve';
@@ -35,13 +36,20 @@ export default function Residences() {
   const [selected, setSelected] = useState<number | null>(null);
   const [tab, setTab] = useState<PanelTab>('overview');
   const [floor, setFloor] = useState<'ground' | 'first'>('ground');
-  const [lightbox, setLightbox] = useState<string | null>(null);
+  const [planZoom, setPlanZoom] = useState(false);
   const [beds, setBeds] = useState<BedFilter>('all');
   const [availableOnly, setAvailableOnly] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
-  useFocusTrap(dialogRef, lightbox !== null);
+  useFocusTrap(dialogRef, planZoom);
   const unit = selected !== null ? UNITS.find((u) => u.id === selected) : null;
+
+  const fpLabels: FloorPlanLabels = {
+    living: t('fpLiving'), hall: t('fpHall'), wc: t('fpWc'), stair: t('fpStair'),
+    landing: t('fpLanding'), bath: t('fpBath'), ensuite: t('fpEnsuite'), master: t('fpMaster'),
+    bed2: t('fpBed2'), bed3: t('fpBed3'), wardrobe: t('fpWardrobe'), veranda: t('fpVeranda'),
+    indicative: t('fpIndicative'), north: t('fpNorth'),
+  };
 
   const visible = UNITS.filter(
     (u) => (beds === 'all' || u.beds === beds) && (!availableOnly || u.status === 'available'),
@@ -70,15 +78,15 @@ export default function Residences() {
   }, [selected]);
 
   useEffect(() => {
-    if (!lightbox) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setLightbox(null); };
+    if (!planZoom) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setPlanZoom(false); };
     document.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
     return () => {
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = '';
     };
-  }, [lightbox]);
+  }, [planZoom]);
 
   return (
     <div className="bg-paper py-24 px-4">
@@ -121,16 +129,10 @@ export default function Residences() {
             unitLabel={t('unit')}
             twoBed={t('twoBed')}
             threeBed={t('threeBed')}
+            availabilityLabel={t('availability')}
           />
         </div>
-        <p className="text-center text-xs text-olive italic mb-8 font-outfit">{t('sitePlanNote')}</p>
-
-        <div className="flex flex-wrap gap-4 justify-center mb-12 text-sm font-outfit">
-          <span className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded bg-sage border-2 border-sage inline-block" />{t('available')}</span>
-          <span className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded bg-limestone border-2 border-dashed border-clay inline-block" />{t('reserved')}</span>
-          <span className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded bg-olive inline-block line-through" />{t('sold')}</span>
-          <span className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded ring-1 ring-ink/30 inline-block" />{t('threeBed')}</span>
-        </div>
+        <p className="text-center text-xs text-olive italic mb-12 font-outfit">{t('sitePlanNote')}</p>
 
         {unit && (
           <div ref={panelRef} className="bg-limestone border border-line rounded-xl overflow-hidden max-w-4xl mx-auto scroll-mt-24">
@@ -195,8 +197,8 @@ export default function Residences() {
                       </button>
                     ))}
                   </div>
-                  <button onClick={() => setLightbox(PLANS[unit.planType][floor])} className="block w-full cursor-zoom-in overflow-hidden rounded-lg border border-line bg-paper">
-                    <Image src={PLANS[unit.planType][floor]} alt={`${unit.type} — ${floor === 'ground' ? t('groundFloor') : t('firstFloor')}`} width={1200} height={800} className="w-full h-auto object-contain" />
+                  <button onClick={() => setPlanZoom(true)} aria-label={`${t('floorPlans')} — ${floor === 'ground' ? t('groundFloor') : t('firstFloor')}`} className="block w-full cursor-zoom-in overflow-hidden rounded-lg border border-line bg-paper p-4 sm:p-6">
+                    <FloorPlan planType={unit.planType} level={floor} area={floor === 'ground' ? unit.gf : unit.ff} labels={fpLabels} />
                   </button>
                   <p className="text-xs text-olive italic mt-3">{t('planCaption')}</p>
                 </div>
@@ -250,12 +252,14 @@ export default function Residences() {
           </div>
         )}
 
-        {lightbox && (
-          <div ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('floorPlans')} className="fixed inset-0 bg-ink/95 z-[60] flex items-center justify-center p-4 outline-none" onClick={() => setLightbox(null)}>
-            <div className="relative w-full max-w-5xl max-h-full" onClick={(e) => e.stopPropagation()}>
-              <Image src={lightbox} alt={t('floorPlans')} width={1600} height={1100} className="w-full h-auto object-contain max-h-[85vh]" />
+        {planZoom && unit && (
+          <div ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={`${t('floorPlans')} — ${t('unit')} ${unit.id}`} className="fixed inset-0 bg-ink/95 z-[60] flex items-center justify-center p-4 sm:p-8 outline-none" onClick={() => setPlanZoom(false)}>
+            <div className="relative w-full max-w-3xl max-h-[88vh] overflow-auto rounded-xl bg-paper p-6 sm:p-10" onClick={(e) => e.stopPropagation()}>
+              <p className="font-fraunces text-xl text-ink mb-1">{t('unit')} {unit.id} — {floor === 'ground' ? t('groundFloor') : t('firstFloor')}</p>
+              <p className="text-sm text-olive font-outfit mb-4">{unit.type}</p>
+              <FloorPlan planType={unit.planType} level={floor} area={floor === 'ground' ? unit.gf : unit.ff} labels={fpLabels} />
             </div>
-            <button onClick={() => setLightbox(null)} aria-label={t('close')} className="absolute top-4 end-4 text-paper p-3 min-w-[44px] min-h-[44px] inline-flex items-center justify-center hover:text-gold active:text-gold transition-colors"><X size={24} aria-hidden="true" /></button>
+            <button onClick={() => setPlanZoom(false)} aria-label={t('close')} className="absolute top-4 end-4 text-paper p-3 min-w-[44px] min-h-[44px] inline-flex items-center justify-center hover:text-gold active:text-gold transition-colors"><X size={24} aria-hidden="true" /></button>
           </div>
         )}
       </div>
