@@ -6,6 +6,16 @@ import { X } from '@phosphor-icons/react';
 import { UNITS, PLANS, type Price, type UnitStatus } from '@/data/units';
 import { useCurrency } from '@/components/CurrencyProvider';
 import { useFocusTrap } from '@/components/useFocusTrap';
+import SitePlan from '@/components/SitePlan';
+import { SPECIFICATION, RESERVE_STEPS } from '@/data/residenceContent';
+
+type PanelTab = 'overview' | 'plans' | 'spec' | 'reserve';
+const PANEL_TABS: { key: PanelTab; label: string }[] = [
+  { key: 'overview', label: 'tabOverview' },
+  { key: 'plans', label: 'tabPlans' },
+  { key: 'spec', label: 'tabSpec' },
+  { key: 'reserve', label: 'tabReserve' },
+];
 
 type BedFilter = 'all' | 2 | 3;
 
@@ -23,6 +33,7 @@ export default function Residences() {
   const t = useTranslations();
   const { format } = useCurrency();
   const [selected, setSelected] = useState<number | null>(null);
+  const [tab, setTab] = useState<PanelTab>('overview');
   const [floor, setFloor] = useState<'ground' | 'first'>('ground');
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [beds, setBeds] = useState<BedFilter>('all');
@@ -98,26 +109,21 @@ export default function Residences() {
           </button>
         </div>
 
-        {visible.length === 0 ? (
-          <p className="text-olive text-center mb-12 font-outfit">{t('noMatch')}</p>
-        ) : (
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 mb-8">
-            {visible.map((u) => (
-              <button
-                key={u.id}
-                onClick={() => { setSelected(selected === u.id ? null : u.id); setFloor('ground'); }}
-                aria-pressed={selected === u.id}
-                aria-label={`${t('unit')} ${u.id}, ${u.beds === 3 ? t('threeBed') : t('twoBed')}, ${statusLabel(u.status)}`}
-                className={`aspect-square rounded-lg border-2 flex flex-col items-center justify-center text-sm font-outfit font-semibold transition-all ${
-                  selected === u.id ? STATUS_TONE[u.status].sel : STATUS_TONE[u.status].idle
-                } ${u.beds === 3 ? 'ring-1 ring-ink/25' : ''} ${u.status === 'sold' ? 'line-through' : ''}`}
-              >
-                <span className="text-lg">{u.id}</span>
-                <span className="text-xs opacity-75">{u.beds}bd</span>
-              </button>
-            ))}
-          </div>
+        {visible.length === 0 && (
+          <p className="text-olive text-center mb-4 font-outfit">{t('noMatch')}</p>
         )}
+        <div className="max-w-3xl mx-auto mb-4 rounded-xl border border-line bg-limestone/50 p-4 sm:p-6">
+          <SitePlan
+            units={visible}
+            selected={selected}
+            onSelect={(id) => { setSelected(selected === id ? null : id); setFloor('ground'); setTab('overview'); }}
+            statusLabel={statusLabel}
+            unitLabel={t('unit')}
+            twoBed={t('twoBed')}
+            threeBed={t('threeBed')}
+          />
+        </div>
+        <p className="text-center text-xs text-olive italic mb-8 font-outfit">{t('sitePlanNote')}</p>
 
         <div className="flex flex-wrap gap-4 justify-center mb-12 text-sm font-outfit">
           <span className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded bg-sage border-2 border-sage inline-block" />{t('available')}</span>
@@ -128,63 +134,115 @@ export default function Residences() {
 
         {unit && (
           <div ref={panelRef} className="bg-limestone border border-line rounded-xl overflow-hidden max-w-4xl mx-auto scroll-mt-24">
-            <div className="grid md:grid-cols-2 gap-0">
-              <div className="relative aspect-video md:aspect-auto min-h-64">
-                <Image
-                  src={`/renders/render-${unit.renderKey}.jpg`}
-                  alt={`${t('unit')} ${unit.id} — ${unit.type}`}
-                  fill
-                  className="object-cover"
-                />
+            {/* Header */}
+            <div className="flex items-center justify-between gap-4 px-6 pt-6">
+              <div>
+                <h3 className="font-fraunces text-2xl text-ink">{t('unit')} {unit.id}</h3>
+                <p className="text-accentText font-outfit">{unit.type}</p>
               </div>
-              <div className="p-6">
-                <h3 className="font-fraunces text-2xl text-ink mb-1">{t('unit')} {unit.id}</h3>
-                <p className="text-accentText font-outfit mb-4">{unit.type}</p>
-                <div className="space-y-2 text-sm font-outfit mb-6">
-                  <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('bedrooms')}</span><span className="font-medium tnum">{unit.beds}</span></div>
-                  <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('internal')}</span><span className="font-medium tnum">{unit.internal} m²</span></div>
-                  <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('verandas')}</span><span className="font-medium tnum">{unit.veranda} m²</span></div>
-                  {unit.storage > 0 && <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('storage')}</span><span className="font-medium tnum">{unit.storage} m²</span></div>}
-                  <div className="flex justify-between border-b border-line py-1 font-semibold"><span>{t('totalArea')}</span><span className="tnum">{unit.total} m²</span></div>
-                  <div className="flex justify-between py-1 font-semibold"><span>{t('priceLabel')}</span><span className="text-accentText">{priceLabel(unit.price)}</span></div>
-                </div>
-                <div className={`inline-block px-3 py-1 rounded-full text-xs font-outfit font-semibold ${STATUS_TONE[unit.status].badge}`}>
-                  {statusLabel(unit.status)}
-                </div>
+              <div className={`shrink-0 px-3 py-1 rounded-full text-xs font-outfit font-semibold ${STATUS_TONE[unit.status].badge}`}>
+                {statusLabel(unit.status)}
               </div>
             </div>
 
-            <div className="p-6 border-t border-line">
-              <h4 className="font-fraunces text-xl text-ink mb-3">{t('floorPlans')}</h4>
-              <div className="flex gap-2 mb-4 font-outfit text-sm">
-                {(['ground', 'first'] as const).map((f) => (
-                  <button
-                    key={f}
-                    onClick={() => setFloor(f)}
-                    className={`px-4 py-3 rounded font-medium transition-colors active:opacity-75 ${
-                      floor === f ? 'bg-clayDark text-paper' : 'bg-paper text-olive border border-line hover:bg-line/40'
-                    }`}
-                  >
-                    {f === 'ground' ? t('groundFloor') : t('firstFloor')}
+            {/* Tab bar */}
+            <div role="tablist" aria-label={`${t('unit')} ${unit.id}`} className="flex flex-wrap gap-1 px-6 mt-4 border-b border-line">
+              {PANEL_TABS.map((tb) => (
+                <button
+                  key={tb.key}
+                  role="tab"
+                  aria-selected={tab === tb.key}
+                  onClick={() => setTab(tb.key)}
+                  className={`px-4 py-3 -mb-px text-sm font-outfit font-medium border-b-2 transition-colors ${tab === tb.key ? 'border-clay text-ink' : 'border-transparent text-olive hover:text-clay'}`}
+                >
+                  {t(tb.label)}
+                </button>
+              ))}
+            </div>
+
+            {/* Tab panels */}
+            <div className="p-6">
+              {tab === 'overview' && (
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="relative aspect-video rounded-lg overflow-hidden border border-line">
+                    <Image src={`/renders/render-${unit.renderKey}.jpg`} alt={`${t('unit')} ${unit.id} — ${unit.type}`} fill className="object-cover" />
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="space-y-2 text-sm font-outfit">
+                      <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('bedrooms')}</span><span className="font-medium tnum">{unit.beds}</span></div>
+                      <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('internal')}</span><span className="font-medium tnum">{unit.internal} m²</span></div>
+                      <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('verandas')}</span><span className="font-medium tnum">{unit.veranda} m²</span></div>
+                      {unit.storage > 0 && <div className="flex justify-between border-b border-line py-1"><span className="text-olive">{t('storage')}</span><span className="font-medium tnum">{unit.storage} m²</span></div>}
+                      <div className="flex justify-between border-b border-line py-1 font-semibold"><span>{t('totalArea')}</span><span className="tnum">{unit.total} m²</span></div>
+                      <div className="flex justify-between py-1 font-semibold"><span>{t('priceLabel')}</span><span className="text-accentText">{priceLabel(unit.price)}</span></div>
+                    </div>
+                    <a href="#calculator" className="mt-4 inline-flex items-center gap-1 text-accentText hover:text-ink underline underline-offset-2 text-sm font-outfit font-medium">{t('estimateThis')} →</a>
+                  </div>
+                </div>
+              )}
+
+              {tab === 'plans' && (
+                <div>
+                  <div className="flex gap-2 mb-4 font-outfit text-sm">
+                    {(['ground', 'first'] as const).map((f) => (
+                      <button
+                        key={f}
+                        onClick={() => setFloor(f)}
+                        aria-pressed={floor === f}
+                        className={`px-4 py-3 rounded font-medium transition-colors active:opacity-75 ${floor === f ? 'bg-clayDark text-paper' : 'bg-paper text-olive border border-line hover:bg-line/40'}`}
+                      >
+                        {f === 'ground' ? t('groundFloor') : t('firstFloor')}
+                      </button>
+                    ))}
+                  </div>
+                  <button onClick={() => setLightbox(PLANS[unit.planType][floor])} className="block w-full cursor-zoom-in overflow-hidden rounded-lg border border-line bg-paper">
+                    <Image src={PLANS[unit.planType][floor]} alt={`${unit.type} — ${floor === 'ground' ? t('groundFloor') : t('firstFloor')}`} width={1200} height={800} className="w-full h-auto object-contain" />
                   </button>
-                ))}
-              </div>
-              <button
-                onClick={() => setLightbox(PLANS[unit.planType][floor])}
-                className="block w-full cursor-zoom-in overflow-hidden rounded-lg border border-line bg-paper"
-              >
-                <Image
-                  src={PLANS[unit.planType][floor]}
-                  alt={`${unit.type} — ${floor === 'ground' ? t('groundFloor') : t('firstFloor')}`}
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto object-contain"
-                />
-              </button>
-              <p className="text-xs text-olive italic mt-3">{t('planCaption')}</p>
+                  <p className="text-xs text-olive italic mt-3">{t('planCaption')}</p>
+                </div>
+              )}
+
+              {tab === 'spec' && (
+                <div>
+                  <div className="space-y-6">
+                    {SPECIFICATION.map((group) => (
+                      <div key={group.title}>
+                        <h4 className="font-fraunces text-lg text-ink mb-2">{group.title}</h4>
+                        <div className="text-sm font-outfit">
+                          {group.rows.map((r) => (
+                            <div key={r.label} className="flex justify-between gap-6 border-b border-line py-1.5">
+                              <span className="text-olive shrink-0">{r.label}</span>
+                              <span className="text-ink text-right">{r.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-olive italic mt-4">{t('specCaption')}</p>
+                </div>
+              )}
+
+              {tab === 'reserve' && (
+                <div>
+                  <ol className="space-y-4">
+                    {RESERVE_STEPS.map((s, i) => (
+                      <li key={i} className="flex gap-4">
+                        <span aria-hidden="true" className="shrink-0 w-8 h-8 rounded-full bg-clayDark text-paper inline-flex items-center justify-center font-fraunces font-semibold tnum">{i + 1}</span>
+                        <div>
+                          <p className="font-outfit font-semibold text-ink">{s.title}</p>
+                          <p className="text-sm text-olive font-outfit leading-relaxed">{s.desc}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                  <p className="text-xs text-olive italic mt-4">{t('reserveCaption')}</p>
+                </div>
+              )}
             </div>
 
-            <div className="px-6 pb-6">
+            {/* Persistent CTA */}
+            <div className="px-6 pb-6 pt-2 border-t border-line">
               <button onClick={() => enquireAbout(unit.id)} className="block w-full text-center bg-clayDark hover:bg-[#824a2b] active:bg-[#824a2b] text-paper py-3 px-6 rounded font-outfit font-semibold transition-colors">
                 {t('enquireUnit')}
               </button>
