@@ -186,5 +186,6 @@
   "errEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
   "reserveNote": "Reservierung: 30% Anzahlung und unterzeichneter Vertrag, danach gestaffelte Zahlungen.",
   "previousImage": "Vorheriges Bild",
-  "nextImage": "Nächstes Bild"
+  "nextImage": "Nächstes Bild",
+  "sitePlanNote": "Indikativer Lageplan, nicht maßstabsgetreu. Genaue Flächen je Residenz."
 }

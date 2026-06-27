@@ -6,6 +6,7 @@ import { X } from '@phosphor-icons/react';
 import { UNITS, PLANS, type Price, type UnitStatus } from '@/data/units';
 import { useCurrency } from '@/components/CurrencyProvider';
 import { useFocusTrap } from '@/components/useFocusTrap';
+import SitePlan from '@/components/SitePlan';
 
 type BedFilter = 'all' | 2 | 3;
 
@@ -98,26 +99,21 @@ export default function Residences() {
           </button>
         </div>
 
-        {visible.length === 0 ? (
-          <p className="text-olive text-center mb-12 font-outfit">{t('noMatch')}</p>
-        ) : (
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 mb-8">
-            {visible.map((u) => (
-              <button
-                key={u.id}
-                onClick={() => { setSelected(selected === u.id ? null : u.id); setFloor('ground'); }}
-                aria-pressed={selected === u.id}
-                aria-label={`${t('unit')} ${u.id}, ${u.beds === 3 ? t('threeBed') : t('twoBed')}, ${statusLabel(u.status)}`}
-                className={`aspect-square rounded-lg border-2 flex flex-col items-center justify-center text-sm font-outfit font-semibold transition-all ${
-                  selected === u.id ? STATUS_TONE[u.status].sel : STATUS_TONE[u.status].idle
-                } ${u.beds === 3 ? 'ring-1 ring-ink/25' : ''} ${u.status === 'sold' ? 'line-through' : ''}`}
-              >
-                <span className="text-lg">{u.id}</span>
-                <span className="text-xs opacity-75">{u.beds}bd</span>
-              </button>
-            ))}
-          </div>
+        {visible.length === 0 && (
+          <p className="text-olive text-center mb-4 font-outfit">{t('noMatch')}</p>
         )}
+        <div className="max-w-3xl mx-auto mb-4 rounded-xl border border-line bg-limestone/50 p-4 sm:p-6">
+          <SitePlan
+            units={visible}
+            selected={selected}
+            onSelect={(id) => { setSelected(selected === id ? null : id); setFloor('ground'); }}
+            statusLabel={statusLabel}
+            unitLabel={t('unit')}
+            twoBed={t('twoBed')}
+            threeBed={t('threeBed')}
+          />
+        </div>
+        <p className="text-center text-xs text-olive italic mb-8 font-outfit">{t('sitePlanNote')}</p>
 
         <div className="flex flex-wrap gap-4 justify-center mb-12 text-sm font-outfit">
           <span className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded bg-sage border-2 border-sage inline-block" />{t('available')}</span>

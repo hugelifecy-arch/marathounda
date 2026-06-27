@@ -186,5 +186,6 @@
   "errEmail": "Please enter a valid email address",
   "reserveNote": "Reservation: 30% deposit and a signed contract, with staged payments thereafter.",
   "previousImage": "Previous image",
-  "nextImage": "Next image"
+  "nextImage": "Next image",
+  "sitePlanNote": "Indicative site plan, not to scale. Exact areas are shown in each residence."
 }

@@ -186,5 +186,6 @@
   "errEmail": "请输入有效的电子邮件地址",
   "reserveNote": "预订：30% 定金及签署合同，其后分阶段付款。",
   "previousImage": "上一张",
-  "nextImage": "下一张"
+  "nextImage": "下一张",
+  "sitePlanNote": "示意性总平面图，非按比例。各住宅的确切面积见详情。"
 }
