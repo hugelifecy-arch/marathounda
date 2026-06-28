@@ -14,9 +14,9 @@ import { UNITS, type Unit, type UnitStatus } from '@/data/units';
 // Each marker sits on its villa's stone-clad lower facade; 10–12 on the taller
 // right-hand block. Verified by compositing onto the actual image.
 const SPOTS: { id: number; x: number; y: number }[] = [
-  { id: 1, x: 14, y: 65 }, { id: 2, x: 18, y: 64 }, { id: 3, x: 22, y: 64 }, { id: 4, x: 29, y: 64 },
-  { id: 5, x: 35, y: 61 }, { id: 6, x: 40, y: 61 }, { id: 7, x: 45, y: 59 }, { id: 8, x: 51, y: 60 },
-  { id: 9, x: 55, y: 61 }, { id: 10, x: 68, y: 46 }, { id: 11, x: 73, y: 45 }, { id: 12, x: 80, y: 43 },
+  { id: 1, x: 14, y: 63 }, { id: 2, x: 17, y: 63 }, { id: 3, x: 22, y: 62 }, { id: 4, x: 29, y: 60 },
+  { id: 5, x: 36, y: 61 }, { id: 6, x: 41, y: 61 }, { id: 7, x: 43, y: 59 }, { id: 8, x: 48, y: 58 },
+  { id: 9, x: 54, y: 60 }, { id: 10, x: 66, y: 47 }, { id: 11, x: 70, y: 47 }, { id: 12, x: 76, y: 46 },
 ];
 
 const DOT: Record<UnitStatus, string> = {
@@ -90,22 +90,6 @@ export default function Masterplan({ visibleIds, selected, onSelect, statusLabel
               </button>
             );
           })}
-
-          {/* TEMP calibration grid — read x (red, top) / y (blue, left) for each villa, remove after */}
-          <div className="absolute inset-0 z-30 pointer-events-none">
-            {Array.from({ length: 21 }).map((_, i) => (
-              <div key={`v${i}`} style={{ left: `${i * 5}%` }} className="absolute top-0 bottom-0 w-px" >
-                <div className={`w-full h-full ${i % 2 === 0 ? 'bg-red-500/55' : 'bg-red-500/25'}`} />
-                {i % 2 === 0 && <span className="absolute top-0 left-px text-[9px] leading-tight font-bold text-red-700 bg-white/85 px-0.5 rounded-sm">{i * 5}</span>}
-              </div>
-            ))}
-            {Array.from({ length: 21 }).map((_, i) => (
-              <div key={`h${i}`} style={{ top: `${i * 5}%` }} className="absolute left-0 right-0 h-px">
-                <div className={`w-full h-full ${i % 2 === 0 ? 'bg-blue-600/55' : 'bg-blue-600/25'}`} />
-                {i % 2 === 0 && <span className="absolute left-0 top-px text-[9px] leading-tight font-bold text-blue-700 bg-white/85 px-0.5 rounded-sm">{i * 5}</span>}
-              </div>
-            ))}
-          </div>
         </div>
       </div>
 
