@@ -11,12 +11,14 @@ import { UNITS, type Unit, type UnitStatus } from '@/data/units';
 // same markers.
 
 // Marker centres as % of the masterplan image (2.5:1 crop of render-02).
-// Each marker sits on its villa's stone-clad lower facade; 10–12 on the taller
-// right-hand block. Verified by compositing onto the actual image.
+// Positions derived by detecting the client's hand-drawn red target dots in a
+// website screenshot (pixel-level red detection, mapped to the render region).
+// Layout: villas 1–8 on the low terraced row, 9–12 on the four upper bays of
+// the taller right-hand block. Verified by compositing onto the actual image.
 const SPOTS: { id: number; x: number; y: number }[] = [
-  { id: 1, x: 14, y: 66 }, { id: 2, x: 17, y: 63 }, { id: 3, x: 22, y: 62 }, { id: 4, x: 29, y: 60 },
-  { id: 5, x: 36, y: 61 }, { id: 6, x: 41, y: 61 }, { id: 7, x: 43, y: 59 }, { id: 8, x: 48, y: 58 },
-  { id: 9, x: 54, y: 60 }, { id: 10, x: 66, y: 47 }, { id: 11, x: 70, y: 47 }, { id: 12, x: 76, y: 46 },
+  { id: 1, x: 14, y: 65 }, { id: 2, x: 22, y: 64 }, { id: 3, x: 29, y: 62 }, { id: 4, x: 36, y: 61 },
+  { id: 5, x: 41, y: 60 }, { id: 6, x: 47, y: 59 }, { id: 7, x: 53, y: 58 }, { id: 8, x: 58, y: 57 },
+  { id: 9, x: 64, y: 47 }, { id: 10, x: 69, y: 47 }, { id: 11, x: 74, y: 46 }, { id: 12, x: 81, y: 44 },
 ];
 
 const DOT: Record<UnitStatus, string> = {
