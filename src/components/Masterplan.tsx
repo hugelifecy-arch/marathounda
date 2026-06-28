@@ -10,11 +10,13 @@ import { UNITS, type Unit, type UnitStatus } from '@/data/units';
 // dims non-matching homes. A commissioned aerial can later swap in behind the
 // same markers.
 
-// Marker centres as % of the render (verified against the image).
+// Marker centres as % of the masterplan image (2.5:1 crop of render-02).
+// Each marker sits on its villa's stone-clad lower facade; 10–12 on the taller
+// right-hand block. Verified by compositing onto the actual image.
 const SPOTS: { id: number; x: number; y: number }[] = [
-  { id: 1, x: 15, y: 42 }, { id: 2, x: 21, y: 42 }, { id: 3, x: 26, y: 42 }, { id: 4, x: 32, y: 41 },
-  { id: 5, x: 37, y: 41 }, { id: 6, x: 43, y: 40 }, { id: 7, x: 48, y: 40 }, { id: 8, x: 53, y: 39 },
-  { id: 9, x: 58, y: 39 }, { id: 10, x: 64, y: 39 }, { id: 11, x: 70, y: 38 }, { id: 12, x: 76, y: 38 },
+  { id: 1, x: 14, y: 63 }, { id: 2, x: 19, y: 63 }, { id: 3, x: 24, y: 62 }, { id: 4, x: 30, y: 62 },
+  { id: 5, x: 35, y: 61 }, { id: 6, x: 40, y: 61 }, { id: 7, x: 45, y: 60 }, { id: 8, x: 50, y: 60 },
+  { id: 9, x: 55, y: 59 }, { id: 10, x: 70, y: 58 }, { id: 11, x: 76, y: 57 }, { id: 12, x: 82, y: 57 },
 ];
 
 const DOT: Record<UnitStatus, string> = {
@@ -45,8 +47,8 @@ export default function Masterplan({ visibleIds, selected, onSelect, statusLabel
   return (
     <div>
       <div className="relative w-full overflow-hidden rounded-2xl md:rounded-3xl shadow-xl shadow-ink/15 ring-1 ring-line/50">
-        <div className="relative aspect-[16/9]">
-          <Image src="/renders/render-02.jpg" alt={labels.prompt} fill sizes="(max-width:1280px) 100vw, 1216px" className="object-cover" />
+        <div className="relative aspect-[2.5/1]">
+          <Image src="/renders/masterplan.jpg" alt={labels.prompt} fill sizes="(max-width:1280px) 100vw, 1216px" className="object-cover" />
           {/* readability scrim, strongest top where markers sit */}
           <div className="absolute inset-0 bg-gradient-to-b from-ink/30 via-transparent to-ink/10 pointer-events-none" />
 
