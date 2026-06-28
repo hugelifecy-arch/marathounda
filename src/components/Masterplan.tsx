@@ -90,6 +90,22 @@ export default function Masterplan({ visibleIds, selected, onSelect, statusLabel
               </button>
             );
           })}
+
+          {/* TEMP calibration grid — read x (red, top) / y (blue, left) for each villa, remove after */}
+          <div className="absolute inset-0 z-30 pointer-events-none">
+            {Array.from({ length: 21 }).map((_, i) => (
+              <div key={`v${i}`} style={{ left: `${i * 5}%` }} className="absolute top-0 bottom-0 w-px" >
+                <div className={`w-full h-full ${i % 2 === 0 ? 'bg-red-500/55' : 'bg-red-500/25'}`} />
+                {i % 2 === 0 && <span className="absolute top-0 left-px text-[9px] leading-tight font-bold text-red-700 bg-white/85 px-0.5 rounded-sm">{i * 5}</span>}
+              </div>
+            ))}
+            {Array.from({ length: 21 }).map((_, i) => (
+              <div key={`h${i}`} style={{ top: `${i * 5}%` }} className="absolute left-0 right-0 h-px">
+                <div className={`w-full h-full ${i % 2 === 0 ? 'bg-blue-600/55' : 'bg-blue-600/25'}`} />
+                {i % 2 === 0 && <span className="absolute left-0 top-px text-[9px] leading-tight font-bold text-blue-700 bg-white/85 px-0.5 rounded-sm">{i * 5}</span>}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
