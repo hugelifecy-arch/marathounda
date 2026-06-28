@@ -14,9 +14,9 @@ import { UNITS, type Unit, type UnitStatus } from '@/data/units';
 // Each marker sits on its villa's stone-clad lower facade; 10–12 on the taller
 // right-hand block. Verified by compositing onto the actual image.
 const SPOTS: { id: number; x: number; y: number }[] = [
-  { id: 1, x: 16, y: 62 }, { id: 2, x: 21, y: 62 }, { id: 3, x: 27, y: 62 }, { id: 4, x: 31, y: 62 },
-  { id: 5, x: 37, y: 61 }, { id: 6, x: 41, y: 61 }, { id: 7, x: 43, y: 60 }, { id: 8, x: 48, y: 60 },
-  { id: 9, x: 54, y: 59 }, { id: 10, x: 73, y: 54 }, { id: 11, x: 79, y: 53 }, { id: 12, x: 84, y: 53 },
+  { id: 1, x: 15, y: 63 }, { id: 2, x: 19, y: 63 }, { id: 3, x: 23, y: 62 }, { id: 4, x: 30, y: 59 },
+  { id: 5, x: 37, y: 60 }, { id: 6, x: 42, y: 60 }, { id: 7, x: 47, y: 58 }, { id: 8, x: 53, y: 58 },
+  { id: 9, x: 57, y: 60 }, { id: 10, x: 64, y: 48 }, { id: 11, x: 70, y: 50 }, { id: 12, x: 81, y: 52 },
 ];
 
 const DOT: Record<UnitStatus, string> = {
